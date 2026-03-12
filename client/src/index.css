@@ -1,0 +1,20 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  body {
+    @apply bg-cream text-espresso-dark font-sans antialiased;
+    margin: 0;
+  }
+
+  * {
+    box-sizing: border-box;
+  }
+}
+
+@layer utilities {
+  .transition-max-height {
+    transition: max-height 0.3s ease, opacity 0.3s ease;
+  }
+}

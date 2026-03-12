@@ -1,0 +1,57 @@
+export const TIERS = [
+  {
+    id: 'prosumer',
+    label: 'Prosumer / Entry Commercial',
+    description: 'Single-group, HX or small dual boiler, lower volume cafes & offices',
+    brands: [
+      'Rancilio (Classe 5, Classe 7, Classe 9)',
+      'Bezzera (Magica, Strega, Arcadia, Matrix)',
+      'Rocket Espresso (R9 One)',
+      'Ascaso (Barista Plus)',
+      'Expobar (Brewtus, Office)',
+      'Elektra (Sixties T1)',
+      'Lelit (Bianca, Mara X)',
+    ],
+  },
+  {
+    id: 'mid',
+    label: 'Mid-Range Commercial',
+    description: '2–3 group machines with multi-boiler systems, volumetric dosing, medium-volume cafes',
+    brands: [
+      'Nuova Simonelli (Appia Life, Aurelia Wave)',
+      'Victoria Arduino (White Eagle, Eagle One)',
+      'Faema (E71 E, E61 Legend)',
+      'La Cimbali (M39 HD, M26)',
+      'Sanremo (Café Racer, Opera, Zoe)',
+      'Wega (Polaris, Orion)',
+      'Astoria (Sibilla, Tanya)',
+    ],
+  },
+  {
+    id: 'highend',
+    label: 'High-End Specialty',
+    description: 'Flagship machines with pressure profiling, gravimetric dosing, and advanced electronic control',
+    brands: [
+      'La Marzocco (Linea PB, Linea PB AV, GB5 S, Strada EP/MP, GS3, KB90)',
+      'Synesso (MVP Hydra, S200, Cyncra)',
+      'Slayer (Single Group, Two Group, Steam LP)',
+      'Victoria Arduino (Black Eagle Gravimetric)',
+      'Dalla Corte (DC Pro, Mina, Zero)',
+      'Kees van der Westen (Mirage, Spirit, Speedster)',
+      'Modbar (AV Under-Counter System)',
+    ],
+  },
+  {
+    id: 'superauto',
+    label: 'Super-Automatic (Bean-to-Cup)',
+    description: 'Fully automatic machines for offices, hotels, high-volume hospitality',
+    brands: [
+      'Franke (A400, A600, A800, A1000 Flex)',
+      'Jura (GIGA X8, WE8 — commercial line)',
+      'WMF (1100 S, 1500 S+, 5000 S+)',
+      'Schaerer (Coffee Club, Ambiente, Soul)',
+      'Eversys (Cameo, Tornado, e\'4s)',
+      'Saeco / Philips (Aulika, Intuita)',
+    ],
+  },
+];
