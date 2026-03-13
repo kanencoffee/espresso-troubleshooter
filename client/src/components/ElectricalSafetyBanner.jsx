@@ -5,35 +5,47 @@ export default function ElectricalSafetyBanner() {
         <span className="text-2xl flex-shrink-0" aria-hidden="true">⚡</span>
         <div>
           <h2 className="text-base font-bold text-red-800 mb-1">
-            Electrical Safety Warning
+            Electrical Work — Additional Warnings
           </h2>
           <p className="text-sm text-red-700 leading-relaxed mb-3">
-            Commercial espresso machines operate at <strong>mains voltage (120–240V AC)</strong> and store electrical energy even when switched off. Incorrect repairs can cause electric shock, fire, or death.
+            Electronics repairs involve <strong>live mains voltage (120–240 V AC)</strong> and
+            components that stay energised even after unplugging. These issues are for reference and
+            diagnosis — physical repairs should be performed by a qualified technician.
           </p>
-          <ul className="text-sm text-red-700 space-y-1 list-none mb-3">
+          <ul className="text-sm text-red-700 space-y-1.5 list-none mb-3">
             <li className="flex items-start gap-2">
               <span className="font-bold flex-shrink-0">•</span>
-              <span><strong>If you are not trained in electrical safety, do not open the machine.</strong> Call a qualified technician.</span>
+              <span>
+                <strong>Never bypass, remove, or tape over a fuse, RCD, or GFCI.</strong> These
+                devices protect you from shock and fire.
+              </span>
             </li>
             <li className="flex items-start gap-2">
               <span className="font-bold flex-shrink-0">•</span>
-              <span>Always <strong>unplug the machine</strong> and wait at least 2 minutes before touching any internal components — capacitors remain charged after power is removed.</span>
+              <span>
+                If you smell burning, see sparks, or feel a tingle when touching the machine —
+                <strong> unplug it immediately</strong> and do not use it again until inspected.
+              </span>
             </li>
             <li className="flex items-start gap-2">
               <span className="font-bold flex-shrink-0">•</span>
-              <span>Never bypass, remove, or tape over a <strong>fuse, RCD, or safety device</strong>. These exist to protect you.</span>
+              <span>
+                When probing live circuits, keep{' '}
+                <strong>one hand behind your back</strong> — this prevents current crossing your
+                chest if you contact a live terminal.
+              </span>
             </li>
             <li className="flex items-start gap-2">
               <span className="font-bold flex-shrink-0">•</span>
-              <span>If you smell burning, see sparks, or feel a tingle when touching the machine — <strong>unplug it immediately</strong> and do not use it until it has been inspected.</span>
-            </li>
-            <li className="flex items-start gap-2">
-              <span className="font-bold flex-shrink-0">•</span>
-              <span>Work with <strong>one hand behind your back</strong> when probing live circuits — this prevents current passing across your chest if you contact a live terminal.</span>
+              <span>
+                <strong>Capacitors store dangerous charge</strong> and must be safely discharged
+                before handling, even when the machine has been unplugged.
+              </span>
             </li>
           </ul>
           <p className="text-xs text-red-600 font-medium">
-            The troubleshooting guides below are provided for reference and diagnostic understanding. All electrical repairs should be performed by a qualified service technician.
+            If you are not confident working safely with mains electricity — stop and call a
+            qualified service technician. No espresso shot is worth a serious injury.
           </p>
         </div>
       </div>
