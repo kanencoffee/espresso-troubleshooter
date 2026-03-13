@@ -4,6 +4,7 @@ import Header from './components/Header';
 import FilterBar from './components/FilterBar';
 import IssueCard from './components/IssueCard';
 import EmptyState from './components/EmptyState';
+import ElectricalSafetyBanner from './components/ElectricalSafetyBanner';
 
 // Enrich issues with resolved category label/icon for card display
 const CATEGORY_MAP = Object.fromEntries(CATEGORIES.map((c) => [c.id, c]));
@@ -79,6 +80,10 @@ export default function App() {
       />
 
       <main className="max-w-5xl mx-auto px-4 py-6 sm:px-6">
+        {(selectedCategories.includes('electronics') ||
+          (searchQuery.trim() !== '' && filtered.some((i) => i.category === 'electronics'))) && (
+          <ElectricalSafetyBanner />
+        )}
         {filteredWithNum.length === 0 ? (
           <EmptyState onClear={clearAll} />
         ) : (
