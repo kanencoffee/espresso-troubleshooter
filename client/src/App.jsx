@@ -1,4 +1,4 @@
-import { useState, useMemo } from 'react';
+import { useState, useMemo, useEffect, useCallback } from 'react';
 import { ISSUES, CATEGORIES } from './data/issues';
 import Header from './components/Header';
 import FilterBar from './components/FilterBar';
@@ -6,6 +6,13 @@ import IssueCard from './components/IssueCard';
 import EmptyState from './components/EmptyState';
 import ElectricalSafetyBanner from './components/ElectricalSafetyBanner';
 import SafetyDisclaimer from './components/SafetyDisclaimer';
+
+// Fire a gtag event if available
+function trackEvent(eventName, params = {}) {
+  if (typeof window !== 'undefined' && typeof window.gtag === 'function') {
+    window.gtag('event', eventName, params);
+  }
+}
 
 // Enrich issues with resolved category label/icon for card display
 const CATEGORY_MAP = Object.fromEntries(CATEGORIES.map((c) => [c.id, c]));
@@ -20,6 +27,40 @@ export default function App() {
   const [selectedCategories, setSelectedCategories] = useState([]);
   const [searchQuery, setSearchQuery] = useState('');
   const [expandedId, setExpandedId] = useState(null);
+
+  // On mount: read URL hash, auto-expand matching issue and scroll to it
+  useEffect(() => {
+    const hash = window.location.hash.slice(1);
+    if (!hash) return;
+    const issue = ENRICHED_ISSUES.find((i) => i.id === hash);
+    if (!issue) return;
+    setExpandedId(hash);
+    const timer = setTimeout(() => {
+      const el = document.getElementById(hash);
+      if (el) el.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }, 150);
+    return () => clearTimeout(timer);
+  }, []);
+
+  // Debounced search tracking
+  const handleSearchTracked = useCallback((query) => {
+    if (query.trim().length >= 3) {
+      trackEvent('search', { search_term: query.trim() });
+    }
+  }, []);
+
+  function handleToggle(issueId) {
+    setExpandedId((prev) => {
+      const next = prev === issueId ? null : issueId;
+      if (next) {
+        history.replaceState(null, '', `#${next}`);
+        trackEvent('issue_expand', { issue_id: issueId });
+      } else {
+        history.replaceState(null, '', window.location.pathname);
+      }
+      return next;
+    });
+  }
 
   function toggleTier(tierId) {
     setSelectedTiers((prev) =>
@@ -76,6 +117,7 @@ export default function App() {
         onCategoryToggle={toggleCategory}
         searchQuery={searchQuery}
         onSearchChange={setSearchQuery}
+        onSearchTracked={handleSearchTracked}
         resultCount={filtered.length}
         totalCount={ENRICHED_ISSUES.length}
       />
@@ -96,9 +138,7 @@ export default function App() {
                 issue={issue}
                 num={num}
                 isExpanded={expandedId === issue.id}
-                onToggle={() =>
-                  setExpandedId((prev) => (prev === issue.id ? null : issue.id))
-                }
+                onToggle={() => handleToggle(issue.id)}
               />
             ))}
           </div>

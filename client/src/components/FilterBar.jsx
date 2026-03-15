@@ -1,3 +1,4 @@
+import { useEffect, useRef } from 'react';
 import { TIERS } from '../data/machines';
 import { CATEGORIES } from '../data/issues';
 
@@ -23,9 +24,21 @@ export default function FilterBar({
   onCategoryToggle,
   searchQuery,
   onSearchChange,
+  onSearchTracked,
   resultCount,
   totalCount,
 }) {
+  // Debounce search tracking — fire after 1s of no typing
+  const debounceRef = useRef(null);
+  useEffect(() => {
+    if (!searchQuery.trim()) return;
+    clearTimeout(debounceRef.current);
+    debounceRef.current = setTimeout(() => {
+      if (onSearchTracked) onSearchTracked(searchQuery);
+    }, 1000);
+    return () => clearTimeout(debounceRef.current);
+  }, [searchQuery, onSearchTracked]);
+
   return (
     <div className="bg-white border-b border-cream-border">
       <div className="max-w-5xl mx-auto px-4 py-4 sm:px-6 space-y-4">

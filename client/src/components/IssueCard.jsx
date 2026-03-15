@@ -37,13 +37,35 @@ function SolutionSteps({ text }) {
   );
 }
 
+function CopyLinkButton({ issueId }) {
+  const [copied, setCopied] = useState(false);
+  function handleCopy(e) {
+    e.stopPropagation();
+    const url = `${window.location.origin}/#${issueId}`;
+    navigator.clipboard.writeText(url).then(() => {
+      setCopied(true);
+      setTimeout(() => setCopied(false), 2000);
+    });
+  }
+  return (
+    <button
+      onClick={handleCopy}
+      className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded text-xs font-medium border border-cream-border text-espresso-muted hover:border-espresso-muted hover:text-espresso-dark transition-colors"
+      title="Copy link to this issue"
+    >
+      {copied ? '✅ Copied!' : '🔗 Copy link'}
+    </button>
+  );
+}
+
 export default function IssueCard({ issue, num, isExpanded, onToggle }) {
   const [techOpen, setTechOpen] = useState(false);
   const diy = DIY_CONFIG[issue.diy] || DIY_CONFIG.tech;
 
   return (
     <div
-      className={`bg-white rounded-lg border ${isExpanded ? 'border-amber-cafe shadow-md' : 'border-cream-border hover:border-espresso-muted'} transition-all duration-200`}
+      id={issue.id}
+      className={`bg-white rounded-lg border scroll-mt-4 ${isExpanded ? 'border-amber-cafe shadow-md' : 'border-cream-border hover:border-espresso-muted'} transition-all duration-200`}
     >
       {/* Clickable header row */}
       <button
@@ -110,11 +132,12 @@ export default function IssueCard({ issue, num, isExpanded, onToggle }) {
             <SolutionSteps text={issue.solution} />
           </section>
 
-          {/* DIY badge */}
-          <div>
+          {/* DIY badge + copy link */}
+          <div className="flex items-center gap-3 flex-wrap">
             <span className={`inline-flex items-center px-2.5 py-1 rounded text-xs font-medium border ${diy.classes}`}>
               🏷️ {diy.label}
             </span>
+            <CopyLinkButton issueId={issue.id} />
           </div>
 
           {/* Technical detail — collapsible */}
