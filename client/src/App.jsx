@@ -108,16 +108,17 @@ export default function App() {
 
   return (
     <div className="min-h-screen bg-cream">
-      <Header />
+      <Header
+        searchQuery={searchQuery}
+        onSearchChange={setSearchQuery}
+        onSearchTracked={handleSearchTracked}
+      />
 
       <FilterBar
         selectedTiers={selectedTiers}
         onTierToggle={toggleTier}
         selectedCategories={selectedCategories}
         onCategoryToggle={toggleCategory}
-        searchQuery={searchQuery}
-        onSearchChange={setSearchQuery}
-        onSearchTracked={handleSearchTracked}
         resultCount={filtered.length}
         totalCount={ENRICHED_ISSUES.length}
       />
