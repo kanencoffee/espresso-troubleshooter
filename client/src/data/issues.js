@@ -517,6 +517,84 @@ export const ISSUES = [
     diy: 'tech',
   },
 
+  // ─────────── GRINDER (additional) ───────────
+  {
+    id: 'grinder-burrs',
+    title: 'Burr alignment, calibration, and replacement',
+    category: 'grinder',
+    tiers: ['prosumer', 'mid', 'highend'],
+    difficulty: 'advanced',
+    symptoms: [
+      'Grind quality has noticeably degraded despite correct settings',
+      'Significant coffee fines even at coarse settings',
+      'Uneven grind particle distribution visible on a scatter mat',
+      'Grinder chirps or makes a metallic scratching sound',
+    ],
+    summary: 'Dull or misaligned burrs produce inconsistent particle sizes, killing extraction quality. Burrs dull over time and alignment drifts — both are serviceable.',
+    cause: 'Steel burrs dull after 200–500 kg of coffee depending on quality. Ceramic burrs last longer but chip more easily. Alignment drifts from vibration, thermal cycling, or improper reassembly after cleaning. A chirping sound means the burrs are touching — immediate realignment required.',
+    solution: `1. Test sharpness: sharper burrs produce a bimodal distribution (coarse + fine); dull burrs produce a unimodal blob. A Kruve sifter or scatter mat makes this visible.\n2. Check alignment first before replacing burrs: use the "marker test" — run a Sharpie around the flat burr face, reinstall, and rotate by hand. Ink will be scraped off only at high spots — adjust the upper burr carrier to compensate.\n3. Replace burrs if alignment is correct but grind quality is poor. Always replace as matched sets from the same manufacturer batch.\n4. After installing new burrs, run 500g of inexpensive beans ("seasoning the burrs") before using for quality coffee — new burrs shed metal particles and produce inconsistent grinds until broken in.\n5. Set grind zero point: carefully wind in until the burrs just touch (you'll hear a light chirp), then back out to your coarsest espresso setting from there.`,
+    technicalDetail: `Burr alignment standards: the specialty community generally targets ≤50 micron run-out measured with a dial indicator at the burr face. Tools like the Bellissimo burr alignment kit or Titus alignment tool make this measurable. Single-dose grinders (Weber Key, Ek43S, Monolith Flat) are engineered to tighter tolerances than commercial workhorses like the Mazzer Robur. On the Robur, annual alignment is standard service. The Niche Zero has a reputation for factory alignment being near-perfect out of the box, though some units still benefit from the marker test.`,
+    diy: 'advanced',
+  },
+  {
+    id: 'grinder-clog',
+    title: 'Grinder jammed or clogged — won\'t rotate',
+    category: 'grinder',
+    tiers: ['prosumer', 'mid', 'highend', 'superauto'],
+    difficulty: 'beginner',
+    symptoms: [
+      'Grinder motor hums but burrs do not rotate',
+      'Motor trips its thermal overload and shuts off',
+      'Grinding sound stops suddenly mid-session',
+      'Complete blockage — grinder won\'t start at all',
+    ],
+    summary: 'A foreign object, compacted coffee oil residue, or a seized bearing is stopping the burrs from rotating. This is usually fixable without parts.',
+    cause: 'A small stone, twig fragment, or hard seed in the beans is the most common culprit. Compacted, oily old coffee in the burr chamber also jams burrs over time. Thermal overload trips if the motor is overloaded — wait 10 minutes before retrying.',
+    solution: `1. Unplug the grinder immediately.\n2. Remove the hopper and empty all beans.\n3. Remove the upper burr carrier (usually 3 screws or a bayonet twist).\n4. Inspect both burr faces for the foreign object — use a flashlight. Remove with tweezers.\n5. Clean the burr chamber thoroughly with a grinder brush before reassembling.\n6. If no foreign object is found and the motor still hums without spinning, the start capacitor or motor bearings may have failed — that requires component-level repair.\n7. For thermal overload trips: wait 15 minutes with the grinder unplugged before restarting.`,
+    technicalDetail: `Super-automatic machines (Jura, DeLonghi, Saeco) have integrated grinders that are significantly harder to clear. On these machines, the manufacturer may provide a "cleaning tablet" mode that partially clears soft clogs. For hard jams on super-automatics, partial disassembly is typically required. On Mazzer commercial grinders, the motor start capacitor is a well-known failure mode on older units — a capacitor that fails causes the motor to hum without starting, mimicking a jam. Test by gently helping the burrs start rotating (with the machine unplugged!) — if the motor continues on its own after a hand-start, the capacitor is the culprit.`,
+    diy: 'diy',
+  },
+
+  // ─────────── WATER SYSTEM (additional) ───────────
+  {
+    id: 'water-inlet-filter',
+    title: 'Clogged water inlet filter or tank screen',
+    category: 'water',
+    tiers: ['prosumer', 'mid', 'highend', 'superauto'],
+    difficulty: 'beginner',
+    symptoms: [
+      'Machine has low flow despite pump working correctly',
+      'Machine takes longer than normal to fill the boiler',
+      'Machine runs dry even with a full water tank',
+      'Visible debris or sediment in the water tank',
+    ],
+    summary: 'The water inlet filter or tank screen is clogged with mineral deposits or debris, restricting water supply to the pump.',
+    cause: 'The inlet filter screen at the bottom of the water tank connection catches mineral flakes and debris that would otherwise reach the pump. Over time it clogs, especially in hard water areas or if the machine hasn\'t been serviced in years.',
+    solution: `1. Remove the water tank and locate the filter screen — it's usually a small mesh strainer at the inlet port where the tank connects to the machine.\n2. On machines with a removable screen, pull it out and rinse under running water. Use a soft brush to dislodge mineral deposits.\n3. Soak stubborn deposits in a 1:10 citric acid solution for 15 minutes.\n4. Check inside the machine's water inlet tube as well — some machines have a second filter there.\n5. For plumbed-in machines, check the inline pre-filter and replace the cartridge if it's been more than 6 months.\n6. Install a tank water filter (Brita-style tablet or BWT Mg2+ disc) to slow future clogging.`,
+    technicalDetail: `On La Marzocco Linea Mini and similar machines with a rotary pump, even minor flow restriction at the inlet can cause the pump to cavitate — producing a characteristic high-pitched whine and inconsistent pressure. The Linea Mini's tank-to-machine connection uses a push-fit connector and the internal screen is a small stainless mesh ring. On super-automatics with integrated grinders, the water inlet filter is often co-located with the descaling valve assembly and requires partial disassembly to access.`,
+    diy: 'diy',
+  },
+
+  // ─────────── GROUP HEAD (additional) ───────────
+  {
+    id: 'group-backflush',
+    title: 'Backflush routine and solenoid valve purge',
+    category: 'group',
+    tiers: ['prosumer', 'mid', 'highend'],
+    difficulty: 'beginner',
+    symptoms: [
+      'Coffee taste has gradually degraded — bitter or sour even with fresh beans',
+      'Brown liquid drains from the 3-way solenoid after shots',
+      'Slow flow through the group head even with a fresh puck',
+      'Visible coffee oil residue inside the portafilter basket',
+    ],
+    summary: 'Regular backflushing cleans coffee oils from the group head, dispersion screen, and 3-way solenoid valve. Machines with a 3-way solenoid (E61, HX, and most prosumer machines) require backflushing; single-boiler machines with no solenoid only need group head cleaning.',
+    cause: 'Coffee oils oxidize and build up on the shower screen, dispersion plate, and inside the solenoid valve body. Without regular cleaning, this rancid residue taints extraction flavour and eventually blocks the solenoid\'s drain port.',
+    solution: `1. Insert a blind basket (a solid disk, no holes) into the portafilter.\n2. Add a small amount of group head cleaner (Cafiza, Puly Caff, or equivalent) — typically 1/4 to 1/2 teaspoon.\n3. Lock the portafilter into the group. Start a shot — water pressure builds behind the blind basket.\n4. After 10 seconds, stop the shot. Pressure releases through the solenoid drain. Repeat 5–10 times.\n5. Remove the blind basket and lock in the portafilter with no coffee. Flush for 30 seconds to rinse residual cleaner.\n6. Wipe down the group head, shower screen, and portafilter basket thoroughly.\n\nFor commercial machines: backflush daily. For prosumer home machines: weekly (or every 10–15 shots).`,
+    technicalDetail: `The 3-way solenoid drains the residual brew water from the puck after each shot — this is why the puck comes out dry on properly functioning machines. Coffee oil residue gradually coats the solenoid's internal Teflon seal and drain port. On the E61 group head, the cam mechanism also benefits from annual lubrication with food-grade silicone grease applied to the cam follower and pivot point. Avoid petroleum-based greases — they're not food safe and degrade rubber seals. For super-automatic machines: these have integrated cleaning tablet cycles that approximate backflushing; follow the manufacturer's schedule.`,
+    diy: 'diy',
+  },
+
   // ─────────── PROFILING ───────────
   {
     id: 'profiling-gear-pump',
