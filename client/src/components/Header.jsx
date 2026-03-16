@@ -36,8 +36,25 @@ export default function Header({ searchQuery = '', onSearchChange, onSearchTrack
             </div>
           </div>
 
+          {/* Search — left of nav links */}
+          <div className="relative flex-1 max-w-xs">
+            <span
+              className="absolute left-3 top-1/2 -translate-y-1/2 text-espresso-muted text-sm"
+              aria-hidden="true"
+            >
+              🔍
+            </span>
+            <input
+              type="search"
+              value={searchQuery}
+              onChange={(e) => onSearchChange && onSearchChange(e.target.value)}
+              placeholder="Search issues…"
+              className="w-full pl-8 pr-3 py-1.5 text-sm border border-cream-border rounded-md bg-cream placeholder-espresso-muted text-espresso-dark focus:outline-none focus:ring-2 focus:ring-amber-cafe focus:border-transparent"
+            />
+          </div>
+
           {/* Nav links */}
-          <nav className="hidden md:flex items-center gap-4 text-sm text-espresso-muted" aria-label="Site navigation">
+          <nav className="hidden md:flex items-center gap-4 text-sm text-espresso-muted ml-auto" aria-label="Site navigation">
             <a
               href="https://www.kanencoffee.com/bookappointment"
               target="_blank"
@@ -55,23 +72,6 @@ export default function Header({ searchQuery = '', onSearchChange, onSearchTrack
               YouTube
             </a>
           </nav>
-
-          {/* Search — right side */}
-          <div className="relative flex-1 max-w-xs ml-auto">
-            <span
-              className="absolute left-3 top-1/2 -translate-y-1/2 text-espresso-muted text-sm"
-              aria-hidden="true"
-            >
-              🔍
-            </span>
-            <input
-              type="search"
-              value={searchQuery}
-              onChange={(e) => onSearchChange && onSearchChange(e.target.value)}
-              placeholder="Search issues…"
-              className="w-full pl-8 pr-3 py-1.5 text-sm border border-cream-border rounded-md bg-cream placeholder-espresso-muted text-espresso-dark focus:outline-none focus:ring-2 focus:ring-amber-cafe focus:border-transparent"
-            />
-          </div>
         </div>
       </div>
     </header>
