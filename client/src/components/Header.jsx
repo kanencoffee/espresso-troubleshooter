@@ -13,6 +13,13 @@ export default function Header({ searchQuery = '', onSearchChange, onSearchTrack
   }, [searchQuery, onSearchTracked]);
 
   return (
+    <>
+      <a
+        href="#main-content"
+        className="sr-only focus:not-sr-only focus:absolute focus:top-2 focus:left-2 focus:z-50 focus:px-4 focus:py-2 focus:bg-amber-cafe focus:text-white focus:rounded focus:text-sm focus:font-medium"
+      >
+        Skip to main content
+      </a>
     <header className="bg-white border-b border-cream-border sticky top-0 z-10">
       <div className="max-w-5xl mx-auto px-4 py-3 sm:px-6">
         <div className="flex items-center gap-4">
@@ -30,9 +37,9 @@ export default function Header({ searchQuery = '', onSearchChange, onSearchTrack
           </div>
 
           {/* Nav links */}
-          <nav className="hidden md:flex items-center gap-4 text-sm text-espresso-muted">
+          <nav className="hidden md:flex items-center gap-4 text-sm text-espresso-muted" aria-label="Site navigation">
             <a
-              href="https://www.kanencoffee.com/service"
+              href="https://www.kanencoffee.com/bookappointment"
               target="_blank"
               rel="noopener noreferrer"
               className="hover:text-espresso-dark transition-colors"
@@ -68,5 +75,6 @@ export default function Header({ searchQuery = '', onSearchChange, onSearchTrack
         </div>
       </div>
     </header>
+    </>
   );
 }

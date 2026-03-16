@@ -123,7 +123,7 @@ export default function App() {
         totalCount={ENRICHED_ISSUES.length}
       />
 
-      <main className="max-w-5xl mx-auto px-4 py-6 sm:px-6">
+      <main id="main-content" className="max-w-5xl mx-auto px-4 py-6 sm:px-6">
         <SafetyDisclaimer />
         {(selectedCategories.includes('electronics') ||
           (searchQuery.trim() !== '' && filtered.some((i) => i.category === 'electronics'))) && (
@@ -147,11 +147,22 @@ export default function App() {
       </main>
 
       <footer className="max-w-5xl mx-auto px-4 py-8 sm:px-6 mt-6 border-t border-cream-border">
-        <p className="text-xs text-espresso-muted text-center">
-          General commercial espresso machine troubleshooting guide. Always isolate power before
-          servicing. For machine-specific part numbers, consult your service manual or authorised
-          distributor.
+        <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4 mb-4">
+          <div className="text-sm text-espresso-dark">
+            <span className="font-semibold">Kanen Coffee</span>
+            <span className="text-espresso-muted"> — Berkeley's espresso machine repair specialists since 2011</span>
+          </div>
+          <div className="flex items-center gap-4 text-sm text-espresso-muted">
+            <a href="https://www.kanencoffee.com/bookappointment" target="_blank" rel="noopener noreferrer" className="hover:text-espresso-dark transition-colors">Book a Repair</a>
+            <a href="tel:+15108594425" className="hover:text-espresso-dark transition-colors">(510) 859-4425</a>
+            <a href="https://www.youtube.com/@kanencoffee" target="_blank" rel="noopener noreferrer" className="hover:text-espresso-dark transition-colors">YouTube</a>
+          </div>
+        </div>
+        <p className="text-xs text-espresso-muted">
+          Mon–Fri 12pm–5pm · 2129 San Pablo Ave, Berkeley, CA 94702 · General troubleshooting guide only.
+          Always isolate power before servicing. For machine-specific part numbers, consult your service manual or authorised distributor.
         </p>
+        <p className="text-xs text-espresso-muted mt-2">© {new Date().getFullYear()} Kanen Coffee, LLC. All rights reserved.</p>
       </footer>
     </div>
   );

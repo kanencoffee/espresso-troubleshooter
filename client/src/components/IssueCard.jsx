@@ -122,20 +122,20 @@ export default function IssueCard({ issue, num, isExpanded, onToggle }) {
         <div className="border-t border-cream-border px-5 pb-5 pt-4 space-y-5">
           {/* Cause */}
           <section>
-            <h3 className="text-sm font-semibold text-espresso-dark mb-1">⚡ What causes this</h3>
+            <h3 className="text-sm font-semibold text-espresso-dark mb-1"><span aria-hidden="true">⚡</span> What causes this</h3>
             <p className="text-sm text-espresso-muted leading-relaxed">{issue.cause}</p>
           </section>
 
           {/* Solution */}
           <section>
-            <h3 className="text-sm font-semibold text-espresso-dark mb-2">✅ How to fix it</h3>
+            <h3 className="text-sm font-semibold text-espresso-dark mb-2"><span aria-hidden="true">✅</span> How to fix it</h3>
             <SolutionSteps text={issue.solution} />
           </section>
 
           {/* DIY badge + copy link */}
           <div className="flex items-center gap-3 flex-wrap">
             <span className={`inline-flex items-center px-2.5 py-1 rounded text-xs font-medium border ${diy.classes}`}>
-              🏷️ {diy.label}
+              <span aria-hidden="true">🏷️</span> {diy.label}
             </span>
             <CopyLinkButton issueId={issue.id} />
           </div>
@@ -148,7 +148,7 @@ export default function IssueCard({ issue, num, isExpanded, onToggle }) {
                 onClick={() => setTechOpen((v) => !v)}
                 aria-expanded={techOpen}
               >
-                <span>🔧 Technical details</span>
+                <span><span aria-hidden="true">🔧</span> Technical details</span>
                 <span className="text-xs text-espresso-muted italic">(for technicians &amp; advanced users)</span>
                 <span className={`ml-auto transition-transform duration-200 ${techOpen ? 'rotate-180' : ''}`} aria-hidden="true">
                   ▾
