@@ -44,7 +44,7 @@ jobs:
           cp "$HOME/Downloads/kanen_youtube_caption_analysis.json" ../../caption-artifacts/ || true
 
       - name: Upload analysis artifact
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v4
         with:
           name: youtube-caption-analysis
           path: caption-artifacts/
