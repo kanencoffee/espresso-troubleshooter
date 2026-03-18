@@ -1,0 +1,66 @@
+name: YouTube Caption Analyzer
+
+on:
+  workflow_dispatch:
+  workflow_run:
+    workflows: ["YouTube Cache Builder (One-Time Setup)"]
+    types: [completed]
+    branches: [main]
+
+jobs:
+  analyze-captions:
+    name: Analyze Video Captions
+    runs-on: ubuntu-latest
+    if: github.event_name == 'workflow_dispatch' || github.event.workflow_run.conclusion == 'success'
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.11'
+
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install google-auth-oauthlib google-auth-httplib2 google-api-python-client youtube-transcript-api
+
+      - name: Check cache exists
+        run: |
+          if [ ! -f "scripts/youtube-automation/kanen_youtube_cache.json" ]; then
+            echo "Cache file not found"
+            exit 1
+          fi
+
+      - name: Run caption analyzer
+        env:
+          HOME: /home/runner
+        run: |
+          cd scripts/youtube-automation
+          python3 kanen_youtube_caption_analyzer.py
+          mkdir -p ../../caption-artifacts
+          cp "$HOME/Downloads/kanen_youtube_caption_analysis.json" ../../caption-artifacts/ || true
+
+      - name: Upload analysis artifact
+        uses: actions/upload-artifact@v3
+        with:
+          name: youtube-caption-analysis
+          path: caption-artifacts/
+          retention-days: 30
+
+      - name: Commit analysis results
+        if: success()
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          HOME: /home/runner
+        run: |
+          git config user.name "Kanen YouTube Bot"
+          git config user.email "bot@kanencoffee.com"
+          if [ -f "$HOME/Downloads/kanen_youtube_caption_analysis.json" ]; then
+            cp "$HOME/Downloads/kanen_youtube_caption_analysis.json" scripts/youtube-automation/
+            git add scripts/youtube-automation/kanen_youtube_caption_analysis.json
+            git commit -m "📊 Update caption analysis results" || true
+            git push origin main
+          fi

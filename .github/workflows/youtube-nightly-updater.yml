@@ -1,0 +1,73 @@
+name: YouTube Nightly Updater
+
+on:
+  schedule:
+    - cron: '5 8 * * *'
+  workflow_dispatch:
+
+jobs:
+  update-videos:
+    name: Update YouTube Videos
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.11'
+
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install google-auth-oauthlib google-auth-httplib2 google-api-python-client youtube-transcript-api
+
+      - name: Verify cache and analysis files
+        run: |
+          if [ ! -f "scripts/youtube-automation/kanen_youtube_cache.json" ]; then
+            echo "Cache missing"
+            exit 1
+          fi
+          if [ ! -f "scripts/youtube-automation/kanen_youtube_caption_analysis.json" ]; then
+            echo "Analysis missing"
+            exit 1
+          fi
+
+      - name: Run YouTube updater
+        env:
+          YOUTUBE_OAUTH_TOKEN: ${{ secrets.YOUTUBE_OAUTH_TOKEN }}
+          HOME: /home/runner
+        run: |
+          set -e
+          mkdir -p "$HOME/Downloads"
+          echo "$YOUTUBE_OAUTH_TOKEN" > "$HOME/Downloads/kanen_youtube_token.json"
+          chmod 600 "$HOME/Downloads/kanen_youtube_token.json"
+          cd scripts/youtube-automation
+          python3 kanen_youtube_updater_v2.py --use-captions
+          mkdir -p ../../update-logs
+          cp "$HOME/Downloads/kanen_youtube_update_log.txt" ../../update-logs/ 2>/dev/null || true
+
+      - name: Upload update logs
+        if: always()
+        uses: actions/upload-artifact@v3
+        with:
+          name: youtube-update-logs
+          path: update-logs/
+          retention-days: 30
+
+      - name: Commit checkpoint
+        if: success()
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          HOME: /home/runner
+        run: |
+          git config user.name "Kanen YouTube Bot"
+          git config user.email "bot@kanencoffee.com"
+          if [ -f "$HOME/Downloads/kanen_youtube_checkpoint.json" ]; then
+            cp "$HOME/Downloads/kanen_youtube_checkpoint.json" scripts/youtube-automation/
+            git add scripts/youtube-automation/kanen_youtube_checkpoint.json
+            git commit -m "🔄 Update checkpoint" || true
+            git push origin main
+          fi
