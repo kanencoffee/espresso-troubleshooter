@@ -40,42 +40,44 @@ PROBLEM_PREFIXES = [
 # issue_id is the hash fragment on help.kanencoffee.com (e.g. #pump-low-pressure)
 
 PROBLEM_HELP_MAP = {
-    'pump':             ('pump-low-pressure',         'Pump failing to build pressure',
-                         "Machine not pumping? Our free guide covers the most common causes of pump failure, what to check first, and how to fix it"),
-    'pump-noise':       ('pump-noise',                'Loud pump noise or rattling during extraction',
-                         "Loud pump noise? Our free guide walks through vibration pump diagnosis and when to replace"),
-    'not-heating':      ('boiler-temp',               'Machine not reaching brew temperature',
-                         "Machine not heating up? Our free guide covers thermostat, heating element, and SSR diagnosis step by step"),
-    'heating-element':  ('electronics-heating-element','Heating element failure',
-                         "Heating element gone? Our free guide covers testing and replacing heating elements on espresso machines"),
-    'thermostat':       ('electronics-pressurestat',  'Pressurestat or thermostat calibration drift',
-                         "Temperature off? Our free guide covers pressurestat and thermostat testing, adjustment, and replacement"),
-    'ssr':              ('electronics-ssr',            'Solid state relay (SSR) failure',
-                         "SSR issue? Our free guide covers testing and replacing solid state relays on espresso machines"),
-    'steam':            ('steam-none',                'No steam or very weak steam output',
-                         "Steam wand not working? Our free guide covers every common cause — clogs, failed valves, thermostat issues — and how to fix each one"),
-    'leak':             ('seals-internal-leak',       'Internal hose or fitting leak',
-                         "Machine leaking? Our free guide covers the most common leak sources — gaskets, seals, portafilter — and how to fix each one"),
-    'portafilter-leak': ('group-portafilter-leak',    'Portafilter leaking around the group head',
-                         "Portafilter leaking? Our free guide covers group head gasket replacement and portafilter seal diagnosis"),
-    'grinder':          ('grinder-motor',             'Grinder motor stalling or not running',
-                         "Grinder not working? Our free guide covers motor issues, inconsistent grind, and static — with step-by-step fixes"),
-    'descale':          ('boiler-scale',              'Limescale buildup causing heat and flow problems',
-                         "Limescale causing problems? Our free guide walks you through the full descaling process and what to do if it doesn't fix it"),
-    'solenoid':         ('solenoid-failure',          '3-way solenoid valve failure',
-                         "Solenoid valve issue? Our free guide covers testing, cleaning, and replacing 3-way solenoid valves"),
-    'error':            ('electronics-pcb',           'PCB or control board failure',
-                         "Seeing an error code? Our free guide explains what each code means, what's likely failing, and whether it's a DIY fix or needs a tech"),
-    'flow-meter':       ('water-flowmeter',           'Flow meter errors on volumetric machines',
-                         "Flow meter issue? Our free guide covers testing and replacing flow meters on volumetric espresso machines"),
-    'pressure':         ('boiler-opv',                'OPV misadjusted — pressure too high or too low',
-                         "Pressure problem? Our free guide covers OPV adjustment, testing, and diagnosis on espresso machines"),
-    'no-flow':          ('group-no-flow',             'Group head dispensing no water or very low flow',
-                         "No water from group head? Our free guide covers blockages, solenoid issues, and pump diagnosis step by step"),
+    'pump':             ('pump-low-pressure',         'Pump pressure loss diagnosis',
+                         "Pump pressure issues? Our diagnostic resource covers pump failure causes, diagnosis methods, and repair approaches"),
+    'pump-noise':       ('pump-noise',                'Pump noise diagnosis',
+                         "Pump noise present? Our diagnostic resource covers pump vibration analysis and component wear evaluation"),
+    'not-heating':      ('boiler-temp',               'Heating system diagnosis',
+                         "Heating problems? Our diagnostic resource covers thermostat, heating element, and SSR diagnostics"),
+    'heating-element':  ('electronics-heating-element','Heating element diagnosis',
+                         "Heating element failure suspected? Our diagnostic resource covers element testing and evaluation"),
+    'thermostat':       ('electronics-pressurestat',  'Thermostat and pressurestat diagnosis',
+                         "Temperature control issues? Our diagnostic resource covers thermostat and pressurestat evaluation and adjustment"),
+    'ssr':              ('electronics-ssr',            'Solid state relay (SSR) diagnosis',
+                         "SSR failure suspected? Our diagnostic resource covers SSR testing and component evaluation"),
+    'steam':            ('steam-none',                'Steam system diagnosis',
+                         "Steam system issues? Our diagnostic resource covers common causes — clogs, valve failure, and component issues"),
+    'leak':             ('seals-internal-leak',       'Water leak diagnosis',
+                         "Machine leaking? Our diagnostic resource covers common leak sources — gaskets, seals, and fittings"),
+    'portafilter-leak': ('group-portafilter-leak',    'Portafilter seal diagnosis',
+                         "Portafilter leaking? Our diagnostic resource covers group head seal evaluation and diagnosis"),
+    'grinder':          ('grinder-motor',             'Grinder diagnosis',
+                         "Grinder issues? Our diagnostic resource covers motor problems, burr wear, and component evaluation"),
+    'descale':          ('boiler-scale',              'Limescale buildup diagnosis',
+                         "Scaling issues? Our diagnostic resource covers limescale identification and system evaluation"),
+    'solenoid':         ('solenoid-failure',          '3-way solenoid valve diagnosis',
+                         "Solenoid valve issues? Our diagnostic resource covers valve testing and component evaluation"),
+    'error':            ('electronics-pcb',           'Error code reference',
+                         "Error codes present? Our diagnostic resource explains error meanings and component failure indicators"),
+    'flow-meter':       ('water-flowmeter',           'Flow meter diagnosis',
+                         "Flow meter errors? Our diagnostic resource covers meter testing and evaluation"),
+    'pressure':         ('boiler-opv',                'Pressure regulation diagnosis',
+                         "Pressure regulation issues? Our diagnostic resource covers OPV evaluation and pressure diagnostics"),
+    'no-flow':          ('group-no-flow',             'Group head flow diagnosis',
+                         "No water from group? Our diagnostic resource covers blockage detection, solenoid issues, and pump evaluation"),
     'tune-up':          (None, None,
-                         "Want to maintain your machine yourself? Our free troubleshooting hub covers everything from descaling to gasket replacement"),
+                         "Machine maintenance resources available? Our diagnostic hub covers system evaluation and maintenance approaches"),
+    'installation':     (None, None,
+                         "Need component installation guidance? Visit our diagnostic resource hub for component evaluation and installation best practices"),
     'general':          (None, None,
-                         "Want to maintain your machine yourself? Our free troubleshooting hub covers everything from descaling to gasket replacement"),
+                         "Machine maintenance resources available? Our diagnostic hub covers system evaluation and maintenance approaches"),
 }
 
 # ── Context-specific help link refinements ─────────────────────────────────────
@@ -85,34 +87,34 @@ PROBLEM_HELP_MAP = {
 
 CONTEXT_HELP_REFINEMENTS = {
     # Solenoid-specific steam links
-    ('steam', 'solenoid'): ('solenoid-failure', '3-way solenoid valve in steam circuit',
-                            'Solenoid valve not working? Our solenoid-specific guide covers testing and replacement'),
-    ('steam', 'steam_wand'): ('steam-none', 'Steam wand clog diagnosis',
-                              'Steam wand clogged? Our guide covers nozzle cleaning and unclogging'),
+    ('steam', 'solenoid'): ('solenoid-failure', 'Steam circuit solenoid valve diagnosis',
+                            'Solenoid valve suspected? Our diagnostic resource covers solenoid testing and evaluation'),
+    ('steam', 'steam_wand'): ('steam-none', 'Steam wand blockage diagnosis',
+                              'Steam wand clogged? Our diagnostic resource covers blockage detection and evaluation'),
 
     # Pump-specific refinements
-    ('pump', 'pump'): ('pump-low-pressure', 'Pump replacement and pressure testing',
-                       'Pump failing? Our pump guide covers diagnosis, replacement, and pressure verification'),
+    ('pump', 'pump'): ('pump-low-pressure', 'Pump failure diagnosis and evaluation',
+                       'Pump failure suspected? Our diagnostic resource covers pump diagnosis and component evaluation'),
 
     # Gasket-specific leak links
-    ('leak', 'gasket'): ('group-portafilter-leak', 'Group head gasket failure and replacement',
-                         'Gasket leak? Our guide walks through gasket replacement step by step'),
-    ('leak', 'seal'): ('seals-internal-leak', 'Internal seal and hose failure',
-                       'Internal seal leaking? Our guide covers seal replacement and fitting repair'),
+    ('leak', 'gasket'): ('group-portafilter-leak', 'Group head gasket failure diagnosis',
+                         'Gasket failure suspected? Our diagnostic resource covers group head seal evaluation'),
+    ('leak', 'seal'): ('seals-internal-leak', 'Internal seal and hose failure diagnosis',
+                       'Internal seal failure suspected? Our diagnostic resource covers seal evaluation and fitting diagnosis'),
 
     # Heating-specific refinements
     ('not-heating', 'heating_element'): ('electronics-heating-element', 'Heating element failure diagnosis',
-                                          'No heat? Your heating element may have failed. See our element testing guide'),
-    ('not-heating', 'thermostat'): ('electronics-pressurestat', 'Thermostat calibration and testing',
-                                     'Heating issue? Could be your thermostat. See our diagnosis and adjustment guide'),
+                                          'Heating element failure suspected? Our diagnostic resource covers element testing and evaluation'),
+    ('not-heating', 'thermostat'): ('electronics-pressurestat', 'Thermostat failure diagnosis',
+                                     'Thermostat issues suspected? Our diagnostic resource covers thermostat evaluation and diagnosis'),
 
     # Grinder-specific
-    ('grinder', 'grinder'): ('grinder-motor', 'Grinder motor and burr repair',
-                             'Grinder not working? Our guide covers motor diagnosis, burr cleaning, and replacement'),
+    ('grinder', 'grinder'): ('grinder-motor', 'Grinder motor failure diagnosis',
+                             'Grinder failure suspected? Our diagnostic resource covers motor diagnosis and component evaluation'),
 
     # Descale-specific
-    ('descale', None): ('boiler-scale', 'Full descaling procedure and troubleshooting',
-                        'Limescale problems? Our guide covers full descaling, what to do if it doesn\'t work, and prevention'),
+    ('descale', None): ('boiler-scale', 'Limescale buildup diagnosis and evaluation',
+                        'Scaling issues detected? Our diagnostic resource covers limescale buildup assessment and evaluation'),
 }
 
 def select_help_link(problem_type, context=None, brand=None):
@@ -150,50 +152,52 @@ def select_help_link(problem_type, context=None, brand=None):
 # {bm} is replaced with "Brand Model" (e.g. "DeLonghi Magnifica S")
 
 TITLE_HOOKS = {
-    'pump':             "{bm} Won't Build Pressure? Here's What We Found | Kanen Coffee",
-    'pump-noise':       "{bm} Making a Loud Pump Noise — Diagnosed & Fixed | Kanen Coffee",
-    'not-heating':      "{bm} Had No Heat at All — The Diagnosis Surprised Us | Kanen Coffee",
-    'heating-element':  "{bm} Heating Element Dead — Full Replacement Walkthrough | Kanen Coffee",
-    'thermostat':       "{bm} Temperature Way Off — Thermostat Diagnosis & Fix | Kanen Coffee",
-    'ssr':              "{bm} SSR Failure — How We Diagnosed & Fixed It | Kanen Coffee",
-    'steam':            "{bm} Not Frothing Milk — Diagnosed & Fixed | Kanen Coffee",
-    'leak':             "{bm} Leaking Water — Tracked Down the Source & Fixed It | Kanen Coffee",
-    'portafilter-leak': "{bm} Portafilter Leaking — Group Head Seal Replacement | Kanen Coffee",
-    'grinder':          "{bm} Grinder Issue — Diagnosed & Fixed | Kanen Coffee",
-    'descale':          "{bm} Scaled Up Badly — Full Descale & Service | Kanen Coffee",
-    'solenoid':         "{bm} Solenoid Valve Failure — Full Repair Walkthrough | Kanen Coffee",
-    'error':            "{bm} Error Code — What It Means & How We Fixed It | Kanen Coffee",
-    'flow-meter':       "{bm} Flow Meter Issue — Diagnosis & Replacement | Kanen Coffee",
-    'pressure':         "{bm} Pressure Problem — OPV Diagnosis & Adjustment | Kanen Coffee",
-    'no-flow':          "{bm} No Water from Group Head — Full Diagnosis | Kanen Coffee",
-    'tune-up':          "{bm} Full Tune-Up — Everything We Check & Replace | Kanen Coffee",
-    'test':             "{bm} Service Complete — Test Shot After Full Tune-Up | Kanen Coffee",
-    'general':          "{bm} Full Service & Inspection | Kanen Coffee",
+    'pump':             "{bm} Pump Pressure Loss — Service Case Study | Kanen Coffee",
+    'pump-noise':       "{bm} Pump Noise Diagnosis — Service Case Study | Kanen Coffee",
+    'not-heating':      "{bm} No Heat Issue — Service Case Study | Kanen Coffee",
+    'heating-element':  "{bm} Heating Element Replacement — Service Case Study | Kanen Coffee",
+    'thermostat':       "{bm} Thermostat Service — Diagnosis & Repair | Kanen Coffee",
+    'ssr':              "{bm} SSR Replacement — Service Case Study | Kanen Coffee",
+    'steam':            "{bm} Steam System Repair — Service Case Study | Kanen Coffee",
+    'leak':             "{bm} Water Leak Diagnosis & Repair — Service Case Study | Kanen Coffee",
+    'portafilter-leak': "{bm} Portafilter Seal Repair — Service Case Study | Kanen Coffee",
+    'grinder':          "{bm} Grinder Service — Diagnosis & Repair | Kanen Coffee",
+    'descale':          "{bm} Descaling & Service — Case Study | Kanen Coffee",
+    'solenoid':         "{bm} Solenoid Valve Replacement — Service Case Study | Kanen Coffee",
+    'error':            "{bm} Error Code Service — Diagnosis & Resolution | Kanen Coffee",
+    'flow-meter':       "{bm} Flow Meter Replacement — Service Case Study | Kanen Coffee",
+    'pressure':         "{bm} Pressure Adjustment — Service Case Study | Kanen Coffee",
+    'no-flow':          "{bm} Group Head Flow Issue — Diagnosis & Service | Kanen Coffee",
+    'tune-up':          "{bm} Comprehensive Service & Verification | Kanen Coffee",
+    'test':             "{bm} Service Verification — Post-Service Test | Kanen Coffee",
+    'installation':     "{bm} {part} Installation Guide | Kanen Coffee",
+    'general':          "{bm} Service & Inspection Documentation | Kanen Coffee",
 }
 
 # ── Description opening sentences ────────────────────────────────────────────
 # {machine} is replaced with the brand name or "espresso machine"
 
 DESCRIPTION_INTROS = {
-    'pump':             "This {machine} had zero pump pressure. After repair, here's the post-service test showing the pump working correctly.",
-    'pump-noise':       "This {machine} was making a loud rattling pump noise. After service, here's the test showing smooth, quiet operation.",
-    'not-heating':      "This {machine} came in completely cold. After repair, here's the test showing proper heating.",
-    'heating-element':  "Heating element failed on this {machine}. After replacement, here's the verification test.",
-    'thermostat':       "This {machine} had temperature issues. After thermostat service, here's the test showing correct temperature.",
-    'ssr':              "SSR failure on this {machine}. After replacement, here's the test confirming normal heating operation.",
-    'steam':            "This {machine} had no steam pressure. After service, here's the test showing steam frother working correctly.",
-    'leak':             "This {machine} was leaking water. After repair, here's the test showing no leaks under pressure.",
-    'portafilter-leak': "This {machine} was leaking from the portafilter. After seal replacement, here's the test showing a dry puck eject.",
-    'grinder':          "Grinder issue on this {machine}. After repair, here's the test showing proper grinding and operation.",
-    'descale':          "This {machine} was severely scaled. After descaling and service, here's the test showing restored flow and temperature.",
-    'solenoid':         "3-way solenoid valve failed on this {machine}. After replacement, here's the test showing correct operation.",
-    'error':            "This {machine} had an error code. After diagnosis and repair, here's the test showing error-free operation.",
-    'flow-meter':       "Flow meter issue on this {machine}. After repair, here's the test showing accurate dosing.",
-    'pressure':         "This {machine} had pressure problems. After OPV adjustment, here's the test showing correct extraction pressure.",
-    'no-flow':          "No water flow from the group head on this {machine}. After diagnosis and repair, here's the test showing full flow restored.",
-    'tune-up':          "This {machine} received a complete professional tune-up at Kanen Coffee. This clip shows the machine running after service was completed.",
-    'test':             "Service complete on this {machine}. Here's the final test shot confirming everything is running correctly.",
-    'general':          "This {machine} came through our shop for service. Here's the machine verified working after the work was completed.",
+    'pump':             "Service documentation: This {machine} presented with zero pump pressure. Diagnosis and service completed. Post-service verification confirmed normal pump operation.",
+    'pump-noise':       "Service documentation: This {machine} exhibited loud pump noise during operation. Service completed. Post-service verification confirmed quiet, smooth pump operation.",
+    'not-heating':      "Service documentation: This {machine} failed to reach brewing temperature. Diagnosis and service completed. Post-service verification confirmed proper heating function.",
+    'heating-element':  "Service documentation: Heating element failure on this {machine}. Component replaced and verified. Post-service test confirmed normal heating operation.",
+    'thermostat':       "Service documentation: This {machine} exhibited temperature control issues. Thermostat service completed. Post-service verification confirmed accurate temperature operation.",
+    'ssr':              "Service documentation: SSR (solid state relay) failure on this {machine}. Component replaced and verified. Post-service test confirmed normal heating operation.",
+    'steam':            "Service documentation: This {machine} had no steam output. Service diagnosis and repair completed. Post-service verification confirmed steam system operation.",
+    'leak':             "Service documentation: This {machine} was leaking water during operation. Diagnosis and repair completed. Post-service pressure test confirmed no leaks.",
+    'portafilter-leak': "Service documentation: Portafilter leakage on this {machine}. Group head seal service completed. Post-service verification confirmed proper seal function.",
+    'grinder':          "Service documentation: Grinder malfunction on this {machine}. Diagnosis and repair completed. Post-service test confirmed proper grinding operation.",
+    'descale':          "Service documentation: Severe limescale buildup on this {machine}. Descaling and service completed. Post-service verification confirmed restored flow and temperature.",
+    'solenoid':         "Service documentation: 3-way solenoid valve failure on this {machine}. Component replaced and verified. Post-service test confirmed proper operation.",
+    'error':            "Service documentation: This {machine} displayed error code(s). Diagnosis and repair completed. Post-service verification confirmed error-free operation.",
+    'flow-meter':       "Service documentation: Flow meter malfunction on this {machine}. Service diagnosis and replacement completed. Post-service test confirmed accurate flow measurement.",
+    'pressure':         "Service documentation: This {machine} had pressure regulation issues. OPV service completed. Post-service verification confirmed proper extraction pressure.",
+    'no-flow':          "Service documentation: No water flow from group head on this {machine}. Diagnosis and repair completed. Post-service verification confirmed full flow restoration.",
+    'tune-up':          "Service documentation: This {machine} received comprehensive professional service at Kanen Coffee. Testing and verification completed post-service.",
+    'test':             "Service documentation: Service completed on this {machine}. Final test shot verification confirms all systems operating normally.",
+    'installation':     "Installation guide: This video documents the installation process for a {part} on a {machine}. Follow along as we demonstrate proper installation technique and best practices.",
+    'general':          "Service documentation: This {machine} received professional service at Kanen Coffee. Post-service testing and verification completed successfully.",
 }
 
 # ── Per-brand hashtag sets ────────────────────────────────────────────────────
@@ -253,6 +257,7 @@ PROBLEM_TAGS = {
     'no-flow':          '#GroupHeadRepair #NoWaterFix #EspressoFlow',
     'tune-up':          '#EspressoTuneUp #EspressoMaintenance #ProsumerEspresso',
     'test':             '#TestShot #EspressoService #AfterRepair',
+    'installation':     '#DIYEspresso #ComponentInstallation #EspressoMaintenance',
     'general':          '#EspressoService #EspressoFix #DIYEspresso',
 }
 
@@ -281,6 +286,7 @@ VIDEO_CONTENT = {
     'no-flow':          "• No-flow diagnosis\n• Blockage, solenoid, or pump repair\n• Full flow restored and verified",
     'tune-up':          "• Complete professional tune-up performed at Kanen Coffee\n• This clip shows the machine running after service\n• Repair and disassembly steps are not shown in this video",
     'test':             "• Final test shot after completed service\n• Machine verified running correctly\n• No diagnostic or repair steps shown — service was completed prior to this clip",
+    'installation':     "• Component installation procedure demonstrated\n• Best practices and proper technique shown\n• Final verification of installation on completed machine",
     'general':          "• Machine verified running correctly after service\n• Post-service clip only — no diagnostic or repair steps shown\n• Full service was completed prior to filming",
 }
 
@@ -320,6 +326,8 @@ def extract_job_number(title):
 def detect_problem_type(title):
     """Detect primary problem type for help link, title hook, and tag selection."""
     t = title.lower()
+    # Installation videos (instructional content) — highest priority to avoid misclassification
+    if re.search(r'install|installing|installation|how to install|diy install', t): return 'installation'
     if re.search(r'pump.*nois|rattle.*pump|vibrat.*pump', t): return 'pump-noise'
     if re.search(r'\bpump\b|no pressure|not pump|won.t pump|low pressure', t): return 'pump'
     if re.search(r'heating element', t): return 'heating-element'
