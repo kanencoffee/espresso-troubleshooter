@@ -29,22 +29,24 @@ def authenticate():
     if os.path.exists(TOKEN_FILE):
         creds = Credentials.from_authorized_user_file(TOKEN_FILE, SCOPES)
 
-    # Refresh if expired
-    if creds and creds.expired and creds.refresh_token:
-        creds.refresh(Request())
+        # Refresh if expired
+        if creds.expired and creds.refresh_token:
+            creds.refresh(Request())
+            with open(TOKEN_FILE, 'w') as f:
+                f.write(creds.to_json())
+
+        return creds
+
+    # New auth flow (local machine only, not in CI/CD)
+    if os.path.exists(CREDENTIALS_FILE):
+        flow = InstalledAppFlow.from_client_secrets_file(CREDENTIALS_FILE, SCOPES)
+        creds = flow.run_local_server(port=0, open_browser=True)
         with open(TOKEN_FILE, 'w') as f:
             f.write(creds.to_json())
         return creds
 
-    # New auth flow
-    if not creds or not creds.valid:
-        flow = InstalledAppFlow.from_client_secrets_file(CREDENTIALS_FILE, SCOPES)
-        creds = flow.run_local_server(port=0, open_browser=True)
-
-        with open(TOKEN_FILE, 'w') as f:
-            f.write(creds.to_json())
-
-    return creds
+    # If no token and no credentials file, error
+    raise FileNotFoundError(f"Token file not found: {TOKEN_FILE}\nCredentials file not found: {CREDENTIALS_FILE}")
 
 def build_cache():
     """Fetch all videos from channel and save to local cache."""
