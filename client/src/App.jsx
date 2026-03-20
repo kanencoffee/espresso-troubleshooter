@@ -14,6 +14,18 @@ function trackEvent(eventName, params = {}) {
   }
 }
 
+const BOOK_URL = 'https://www.kanencoffee.com/bookappointment';
+
+function bookingUrl(source, issueId = null) {
+  const params = new URLSearchParams({
+    utm_source: 'help',
+    utm_medium: 'referral',
+    utm_campaign: 'troubleshooter',
+    utm_content: issueId ? `card-${issueId}` : source,
+  });
+  return `${BOOK_URL}?${params}`;
+}
+
 // Enrich issues with resolved category label/icon for card display
 const CATEGORY_MAP = Object.fromEntries(CATEGORIES.map((c) => [c.id, c]));
 const ENRICHED_ISSUES = ISSUES.map((issue) => ({
@@ -63,22 +75,35 @@ export default function App() {
   }
 
   function toggleTier(tierId) {
-    setSelectedTiers((prev) =>
-      prev.includes(tierId) ? prev.filter((t) => t !== tierId) : [...prev, tierId]
-    );
+    const next = selectedTiers.includes(tierId)
+      ? selectedTiers.filter((t) => t !== tierId)
+      : [...selectedTiers, tierId];
+    setSelectedTiers(next);
+    trackEvent('filter_tier', { tier_id: tierId, active: !selectedTiers.includes(tierId) });
   }
 
   function toggleCategory(catId) {
-    setSelectedCategories((prev) =>
-      prev.includes(catId) ? prev.filter((c) => c !== catId) : [...prev, catId]
-    );
+    const next = selectedCategories.includes(catId)
+      ? selectedCategories.filter((c) => c !== catId)
+      : [...selectedCategories, catId];
+    setSelectedCategories(next);
+    trackEvent('filter_category', { category_id: catId, active: !selectedCategories.includes(catId) });
   }
 
   function clearAll() {
     setSelectedTiers([]);
     setSelectedCategories([]);
     setSearchQuery('');
+    trackEvent('filter_clear');
   }
+
+  const handleBookRepair = useCallback((source, issueId = null) => {
+    trackEvent('book_repair_click', {
+      source,
+      issue_id: issueId,
+      issue_difficulty: issueId ? ENRICHED_ISSUES.find((i) => i.id === issueId)?.diy : undefined,
+    });
+  }, []);
 
   const filtered = useMemo(() => {
     const q = searchQuery.trim().toLowerCase();
@@ -112,6 +137,8 @@ export default function App() {
         searchQuery={searchQuery}
         onSearchChange={setSearchQuery}
         onSearchTracked={handleSearchTracked}
+        bookRepairUrl={bookingUrl('header')}
+        onBookRepair={() => handleBookRepair('header')}
       />
 
       <FilterBar
@@ -140,6 +167,8 @@ export default function App() {
                 num={num}
                 isExpanded={expandedId === issue.id}
                 onToggle={() => handleToggle(issue.id)}
+                bookRepairUrl={bookingUrl('card', issue.id)}
+                onBookRepair={() => handleBookRepair('card', issue.id)}
               />
             ))}
           </div>
@@ -153,9 +182,31 @@ export default function App() {
             <span className="text-espresso-muted"> — Berkeley's espresso machine repair specialists since 2011</span>
           </div>
           <div className="flex items-center gap-4 text-sm text-espresso-muted">
-            <a href="https://www.kanencoffee.com/bookappointment" target="_blank" rel="noopener noreferrer" className="hover:text-espresso-dark transition-colors">Book a Repair</a>
-            <a href="tel:+15108594425" className="hover:text-espresso-dark transition-colors">(510) 859-4425</a>
-            <a href="https://www.youtube.com/@kanencoffee" target="_blank" rel="noopener noreferrer" className="hover:text-espresso-dark transition-colors">YouTube</a>
+            <a
+              href={bookingUrl('footer')}
+              target="_blank"
+              rel="noopener noreferrer"
+              onClick={() => handleBookRepair('footer')}
+              className="font-semibold text-amber-cafe hover:text-amber-700 transition-colors"
+            >
+              Book a Repair
+            </a>
+            <a
+              href="tel:+15108594425"
+              onClick={() => trackEvent('phone_click', { source: 'footer' })}
+              className="hover:text-espresso-dark transition-colors"
+            >
+              (510) 859-4425
+            </a>
+            <a
+              href="https://www.youtube.com/@kanencoffee"
+              target="_blank"
+              rel="noopener noreferrer"
+              onClick={() => trackEvent('youtube_click', { source: 'footer' })}
+              className="hover:text-espresso-dark transition-colors"
+            >
+              YouTube
+            </a>
           </div>
         </div>
         <p className="text-xs text-espresso-muted">

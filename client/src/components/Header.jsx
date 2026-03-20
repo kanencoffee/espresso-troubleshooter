@@ -1,6 +1,6 @@
 import { useEffect, useRef } from 'react';
 
-export default function Header({ searchQuery = '', onSearchChange, onSearchTracked }) {
+export default function Header({ searchQuery = '', onSearchChange, onSearchTracked, bookRepairUrl, onBookRepair }) {
   // Debounce search tracking — fire after 1s of no typing
   const debounceRef = useRef(null);
   useEffect(() => {
@@ -54,22 +54,23 @@ export default function Header({ searchQuery = '', onSearchChange, onSearchTrack
           </div>
 
           {/* Nav links */}
-          <nav className="hidden md:flex items-center gap-4 text-sm text-espresso-muted ml-auto" aria-label="Site navigation">
-            <a
-              href="https://www.kanencoffee.com/bookappointment"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="hover:text-espresso-dark transition-colors"
-            >
-              Book a Repair
-            </a>
+          <nav className="hidden md:flex items-center gap-3 text-sm ml-auto" aria-label="Site navigation">
             <a
               href="https://www.youtube.com/@kanencoffee"
               target="_blank"
               rel="noopener noreferrer"
-              className="hover:text-espresso-dark transition-colors"
+              className="text-espresso-muted hover:text-espresso-dark transition-colors"
             >
               YouTube
+            </a>
+            <a
+              href={bookRepairUrl || 'https://www.kanencoffee.com/bookappointment'}
+              target="_blank"
+              rel="noopener noreferrer"
+              onClick={onBookRepair}
+              className="px-4 py-1.5 rounded-md bg-amber-cafe text-white text-sm font-semibold hover:bg-amber-700 transition-colors"
+            >
+              Book a Repair
             </a>
           </nav>
         </div>

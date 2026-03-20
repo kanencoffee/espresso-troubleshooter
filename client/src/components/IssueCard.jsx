@@ -46,6 +46,9 @@ function CopyLinkButton({ issueId }) {
       setCopied(true);
       setTimeout(() => setCopied(false), 2000);
     });
+    if (typeof window !== 'undefined' && typeof window.gtag === 'function') {
+      window.gtag('event', 'copy_link', { issue_id: issueId });
+    }
   }
   return (
     <button
@@ -58,7 +61,7 @@ function CopyLinkButton({ issueId }) {
   );
 }
 
-export default function IssueCard({ issue, num, isExpanded, onToggle }) {
+export default function IssueCard({ issue, num, isExpanded, onToggle, bookRepairUrl, onBookRepair }) {
   const [techOpen, setTechOpen] = useState(false);
   const diy = DIY_CONFIG[issue.diy] || DIY_CONFIG.tech;
 
@@ -139,6 +142,25 @@ export default function IssueCard({ issue, num, isExpanded, onToggle }) {
             </span>
             <CopyLinkButton issueId={issue.id} />
           </div>
+
+          {/* In-card booking CTA — shown for technician-level issues */}
+          {issue.diy === 'tech' && (
+            <div className="rounded-lg bg-amber-50 border border-amber-200 px-4 py-3 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3">
+              <div>
+                <p className="text-sm font-semibold text-espresso-dark">This repair needs a technician</p>
+                <p className="text-xs text-espresso-muted mt-0.5">Our Berkeley shop services most espresso machine brands. Fast turnaround.</p>
+              </div>
+              <a
+                href={bookRepairUrl || 'https://www.kanencoffee.com/bookappointment'}
+                target="_blank"
+                rel="noopener noreferrer"
+                onClick={(e) => { e.stopPropagation(); if (onBookRepair) onBookRepair(); }}
+                className="flex-shrink-0 inline-flex items-center justify-center px-4 py-2 rounded-md bg-amber-cafe text-white text-sm font-semibold hover:bg-amber-700 transition-colors"
+              >
+                Book a Repair →
+              </a>
+            </div>
+          )}
 
           {/* Technical detail — collapsible */}
           {issue.technicalDetail && (
