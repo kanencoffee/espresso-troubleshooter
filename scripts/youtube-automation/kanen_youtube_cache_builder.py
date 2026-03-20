@@ -29,11 +29,15 @@ def authenticate():
     if os.path.exists(TOKEN_FILE):
         creds = Credentials.from_authorized_user_file(TOKEN_FILE, SCOPES)
 
-        # Refresh if expired
-        if creds.expired and creds.refresh_token:
-            creds.refresh(Request())
-            with open(TOKEN_FILE, 'w') as f:
-                f.write(creds.to_json())
+        # Always refresh token before use to ensure it's valid
+        if creds.refresh_token:
+            try:
+                creds.refresh(Request())
+                with open(TOKEN_FILE, 'w') as f:
+                    f.write(creds.to_json())
+                print("✅ Token refreshed successfully")
+            except Exception as e:
+                print(f"⚠️ Token refresh failed: {e}")
 
         return creds
 
@@ -61,6 +65,14 @@ def build_cache():
         part='contentDetails',
         id=CHANNEL_ID
     ).execute()
+
+    if 'error' in channels_response:
+        print(f"❌ API Error: {channels_response['error']}")
+        raise Exception(f"YouTube API error: {channels_response['error']}")
+
+    if 'items' not in channels_response or not channels_response['items']:
+        print(f"❌ No channels found. Response: {channels_response}")
+        raise Exception("No channels found in response")
 
     uploads_playlist_id = channels_response['items'][0]['contentDetails']['relatedPlaylists']['uploads']
 
