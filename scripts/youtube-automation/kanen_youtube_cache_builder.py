@@ -19,7 +19,7 @@ SCOPES = ['https://www.googleapis.com/auth/youtube.readonly']
 TOKEN_FILE = os.path.expanduser('~/Downloads/kanen_youtube_token.json')
 CREDENTIALS_FILE = os.path.expanduser('~/Downloads/kanen_youtube_oauth_credentials.json')
 CACHE_FILE = os.path.expanduser('~/Downloads/kanen_youtube_cache.json')
-CHANNEL_ID = 'UCEu3VqYZuaIm2cKQp1X-v3A'  # @kanencoffee
+CHANNEL_ID = 'UCcwnfcGK1SIpRdwuDWW9PJA'  # @kanencoffee (Brand Account)
 
 def authenticate():
     """Authenticate with YouTube API using stored or new OAuth token."""
