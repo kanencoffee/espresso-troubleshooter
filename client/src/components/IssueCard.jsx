@@ -167,7 +167,10 @@ export default function IssueCard({ issue, num, isExpanded, onToggle, bookRepair
             <section>
               <button
                 className="flex items-center gap-2 text-sm font-medium text-espresso-muted hover:text-espresso-dark transition-colors w-full text-left"
-                onClick={() => setTechOpen((v) => !v)}
+                onClick={() => setTechOpen((v) => {
+                  if (!v && typeof window.gtag === 'function') window.gtag('event', 'tech_detail_expand', { issue_id: issue.id });
+                  return !v;
+                })}
                 aria-expanded={techOpen}
               >
                 <span><span aria-hidden="true">🔧</span> Technical details</span>

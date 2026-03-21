@@ -59,6 +59,7 @@ export default function Header({ searchQuery = '', onSearchChange, onSearchTrack
               href="https://www.youtube.com/@kanencoffee"
               target="_blank"
               rel="noopener noreferrer"
+              onClick={() => { if (typeof window.gtag === 'function') window.gtag('event', 'youtube_click', { source: 'header' }); }}
               className="text-espresso-muted hover:text-espresso-dark transition-colors"
             >
               YouTube

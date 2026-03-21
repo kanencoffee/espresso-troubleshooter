@@ -47,6 +47,7 @@ export default function App() {
     const issue = ENRICHED_ISSUES.find((i) => i.id === hash);
     if (!issue) return;
     setExpandedId(hash);
+    trackEvent('page_view', { page_location: window.location.href, page_title: document.title });
     const timer = setTimeout(() => {
       const el = document.getElementById(hash);
       if (el) el.scrollIntoView({ behavior: 'smooth', block: 'start' });
@@ -67,6 +68,7 @@ export default function App() {
       if (next) {
         history.replaceState(null, '', `#${next}`);
         trackEvent('issue_expand', { issue_id: issueId });
+        trackEvent('page_view', { page_location: window.location.href, page_title: document.title });
       } else {
         history.replaceState(null, '', window.location.pathname);
       }
@@ -130,6 +132,18 @@ export default function App() {
     () => filtered.map((issue) => ({ issue, num: ENRICHED_ISSUES.indexOf(issue) + 1 })),
     [filtered]
   );
+
+  // Track when active filters/search produce zero results
+  const hasActiveFilters = selectedTiers.length > 0 || selectedCategories.length > 0 || searchQuery.trim().length > 0;
+  useEffect(() => {
+    if (filtered.length === 0 && hasActiveFilters) {
+      trackEvent('no_results', {
+        search_term: searchQuery.trim() || null,
+        tier_filters: selectedTiers.join(',') || null,
+        category_filters: selectedCategories.join(',') || null,
+      });
+    }
+  }, [filtered.length, hasActiveFilters]);
 
   return (
     <div className="min-h-screen bg-cream">
