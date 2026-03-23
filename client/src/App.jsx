@@ -6,7 +6,6 @@ import IssueCard from './components/IssueCard';
 import EmptyState from './components/EmptyState';
 import ElectricalSafetyBanner from './components/ElectricalSafetyBanner';
 import SafetyDisclaimer from './components/SafetyDisclaimer';
-import MachinesCatalog from './components/MachinesCatalog';
 
 // Fire a gtag event if available
 function trackEvent(eventName, params = {}) {
@@ -36,7 +35,6 @@ const ENRICHED_ISSUES = ISSUES.map((issue) => ({
 }));
 
 export default function App() {
-  const [currentTab, setCurrentTab] = useState('troubleshooter');
   const [selectedTiers, setSelectedTiers] = useState([]);
   const [selectedCategories, setSelectedCategories] = useState([]);
   const [searchQuery, setSearchQuery] = useState('');
@@ -155,48 +153,41 @@ export default function App() {
         onSearchTracked={handleSearchTracked}
         bookRepairUrl={bookingUrl('header')}
         onBookRepair={() => handleBookRepair('header')}
-        currentTab={currentTab}
-        onTabChange={setCurrentTab}
       />
 
-      {currentTab === 'troubleshooter' && (
-        <>
-          <FilterBar
-            selectedTiers={selectedTiers}
-            onTierToggle={toggleTier}
-            selectedCategories={selectedCategories}
-            onCategoryToggle={toggleCategory}
-            resultCount={filtered.length}
-            totalCount={ENRICHED_ISSUES.length}
-          />
-          <main id="main-content" className="max-w-5xl mx-auto px-4 py-6 sm:px-6">
-            <SafetyDisclaimer />
-            {(selectedCategories.includes('electronics') ||
-              (searchQuery.trim() !== '' && filtered.some((i) => i.category === 'electronics'))) && (
-              <ElectricalSafetyBanner />
-            )}
-            {filteredWithNum.length === 0 ? (
-              <EmptyState onClear={clearAll} />
-            ) : (
-              <div className="space-y-3">
-                {filteredWithNum.map(({ issue, num }) => (
-                  <IssueCard
-                    key={issue.id}
-                    issue={issue}
-                    num={num}
-                    isExpanded={expandedId === issue.id}
-                    onToggle={() => handleToggle(issue.id)}
-                    bookRepairUrl={bookingUrl('card', issue.id)}
-                    onBookRepair={() => handleBookRepair('card', issue.id)}
-                  />
-                ))}
-              </div>
-            )}
-          </main>
-        </>
-      )}
+      <FilterBar
+        selectedTiers={selectedTiers}
+        onTierToggle={toggleTier}
+        selectedCategories={selectedCategories}
+        onCategoryToggle={toggleCategory}
+        resultCount={filtered.length}
+        totalCount={ENRICHED_ISSUES.length}
+      />
 
-      {currentTab === 'machines' && <MachinesCatalog />}
+      <main id="main-content" className="max-w-5xl mx-auto px-4 py-6 sm:px-6">
+        <SafetyDisclaimer />
+        {(selectedCategories.includes('electronics') ||
+          (searchQuery.trim() !== '' && filtered.some((i) => i.category === 'electronics'))) && (
+          <ElectricalSafetyBanner />
+        )}
+        {filteredWithNum.length === 0 ? (
+          <EmptyState onClear={clearAll} />
+        ) : (
+          <div className="space-y-3">
+            {filteredWithNum.map(({ issue, num }) => (
+              <IssueCard
+                key={issue.id}
+                issue={issue}
+                num={num}
+                isExpanded={expandedId === issue.id}
+                onToggle={() => handleToggle(issue.id)}
+                bookRepairUrl={bookingUrl('card', issue.id)}
+                onBookRepair={() => handleBookRepair('card', issue.id)}
+              />
+            ))}
+          </div>
+        )}
+      </main>
 
       <footer className="max-w-5xl mx-auto px-4 py-8 sm:px-6 mt-6 border-t border-cream-border">
         <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4 mb-4">
