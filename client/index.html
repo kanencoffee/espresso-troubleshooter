@@ -23,9 +23,14 @@
     <meta name="twitter:description" content="Free espresso machine troubleshooting from Kanen Coffee, Berkeley's repair specialists since 2011. Diagnose pump, boiler, grinder, steam, and electronics issues — or book a repair." />
     <meta name="twitter:image" content="https://help.kanencoffee.com/og-image.jpg" />
 
+    <!-- Performance: preconnect for GTM (loaded async below) -->
+    <link rel="preconnect" href="https://www.googletagmanager.com" crossorigin />
+    <!-- Performance: preconnect + deferred font load — avoids render-blocking CSS request -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap"
+          rel="stylesheet" media="print" onload="this.media='all'" />
+    <noscript><link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" /></noscript>
 
     <!-- Google Analytics 4 -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-30FF0VQ3YG"></script>
