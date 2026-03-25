@@ -43,7 +43,7 @@ export const TIERS = [
   },
   {
     id: 'superauto',
-    label: 'Super-Automatic (Bean-to-Cup)',
+    label: 'Super-Automatic (Commercial)',
     description: 'Fully automatic machines for offices, hotels, high-volume hospitality',
     brands: [
       'Franke (A400, A600, A800, A1000 Flex)',
@@ -52,6 +52,19 @@ export const TIERS = [
       'Schaerer (Coffee Club, Ambiente, Soul)',
       'Eversys (Cameo, Tornado, e\'4s)',
       'Saeco / Philips (Aulika, Intuita)',
+    ],
+  },
+  {
+    id: 'home-superauto',
+    label: 'Home Super-Automatic',
+    description: 'Home bean-to-cup machines with integrated grinder and automatic milk system',
+    brands: [
+      'De\'Longhi (Magnifica Evo, Magnifica Start, PrimaDonna Soul, Eletta Explore)',
+      'Jura (E6, E8, S8, A1, Z10, ENA series)',
+      'Saeco / Philips (3200, 4300, 5400 LatteGo, Incanto, GranAroma)',
+      'Gaggia (Babila, Magenta Plus, Naviglio)',
+      'Melitta (Barista TS Smart, Avanza, Caffeo Varianza)',
+      'Siemens / Bosch / NEFF (EQ.6, EQ.9, EQ700, Vero series)',
     ],
   },
 ];
