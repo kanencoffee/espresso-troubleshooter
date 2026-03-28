@@ -141,7 +141,7 @@ export default function App() {
     [filtered]
   );
 
-  // Track when active filters/search produce zero results — only fires on transition to zero, not every re-render
+  // Track when active filters/search produce zero results — only fires on transition to zero
   const hasActiveFilters = selectedTiers.length > 0 || selectedCategories.length > 0 || searchQuery.trim().length > 0;
   const prevFilteredLengthRef = useRef(filtered.length);
   useEffect(() => {

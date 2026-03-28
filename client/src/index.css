@@ -3,9 +3,14 @@
 @tailwind utilities;
 
 @layer base {
+  html {
+    overflow-x: hidden;
+  }
+
   body {
     @apply bg-cream text-espresso-dark font-sans antialiased;
     margin: 0;
+    overflow-x: hidden;
   }
 
   * {
