@@ -1,4 +1,4 @@
-import { useState, useMemo, useEffect, useCallback } from 'react';
+import { useState, useMemo, useEffect, useCallback, useRef } from 'react';
 import { ISSUES, CATEGORIES } from './data/issues';
 import Header from './components/Header';
 import FilterBar from './components/FilterBar';
@@ -68,9 +68,9 @@ export default function App() {
       if (next) {
         history.replaceState(null, '', `#${next}`);
         trackEvent('issue_expand', { issue_id: issueId });
-        trackEvent('page_view', { page_location: window.location.href, page_title: document.title });
       } else {
         history.replaceState(null, '', window.location.pathname);
+        trackEvent('page_view', { page_location: window.location.href, page_title: document.title });
       }
       return next;
     });
@@ -107,6 +107,14 @@ export default function App() {
     });
   }, []);
 
+  // Back-to-top visibility
+  const [showBackToTop, setShowBackToTop] = useState(false);
+  useEffect(() => {
+    const onScroll = () => setShowBackToTop(window.scrollY > 600);
+    window.addEventListener('scroll', onScroll, { passive: true });
+    return () => window.removeEventListener('scroll', onScroll);
+  }, []);
+
   const filtered = useMemo(() => {
     const q = searchQuery.trim().toLowerCase();
     return ENRICHED_ISSUES.filter((issue) => {
@@ -133,17 +141,20 @@ export default function App() {
     [filtered]
   );
 
-  // Track when active filters/search produce zero results
+  // Track when active filters/search produce zero results — only fires on transition to zero, not every re-render
   const hasActiveFilters = selectedTiers.length > 0 || selectedCategories.length > 0 || searchQuery.trim().length > 0;
+  const prevFilteredLengthRef = useRef(filtered.length);
   useEffect(() => {
-    if (filtered.length === 0 && hasActiveFilters) {
+    const wasNonZero = prevFilteredLengthRef.current !== 0;
+    if (filtered.length === 0 && hasActiveFilters && wasNonZero) {
       trackEvent('no_results', {
         search_term: searchQuery.trim() || null,
         tier_filters: selectedTiers.join(',') || null,
         category_filters: selectedCategories.join(',') || null,
       });
     }
-  }, [filtered.length, hasActiveFilters]);
+    prevFilteredLengthRef.current = filtered.length;
+  }, [filtered.length, hasActiveFilters, searchQuery, selectedTiers, selectedCategories]);
 
   return (
     <div className="min-h-screen bg-cream">
@@ -189,7 +200,7 @@ export default function App() {
         )}
       </main>
 
-      <footer className="max-w-5xl mx-auto px-4 py-8 sm:px-6 mt-6 border-t border-cream-border">
+      <footer className="max-w-5xl mx-auto px-4 py-8 sm:px-6 mt-6 border-t border-cream-border pb-24 md:pb-8">
         <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4 mb-4">
           <div className="text-sm text-espresso-dark">
             <span className="font-semibold">Kanen Coffee</span>
@@ -213,6 +224,14 @@ export default function App() {
               (510) 859-4425
             </a>
             <a
+              href="https://www.kanencoffee.com"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="hover:text-espresso-dark transition-colors"
+            >
+              Shop
+            </a>
+            <a
               href="https://www.youtube.com/@kanencoffee"
               target="_blank"
               rel="noopener noreferrer"
@@ -227,8 +246,41 @@ export default function App() {
           Mon–Fri 12pm–5pm · 2129 San Pablo Ave, Berkeley, CA 94702 · General troubleshooting guide only.
           Always isolate power before servicing. For machine-specific part numbers, consult your service manual or authorised distributor.
         </p>
-        <p className="text-xs text-espresso-muted mt-2">© {new Date().getFullYear()} Kanen Coffee, LLC. All rights reserved.</p>
+        <p className="text-xs text-espresso-muted mt-2">
+          Authorized service for Lelit, Rancilio, Eureka, Breville, Baratza &amp; more · © {new Date().getFullYear()} Kanen Coffee, LLC.
+        </p>
       </footer>
+
+      {/* Sticky mobile CTA bar */}
+      <div className="md:hidden fixed bottom-0 left-0 right-0 z-20 bg-white border-t border-cream-border px-4 py-3 flex gap-3">
+        <a
+          href="tel:+15108594425"
+          onClick={() => trackEvent('phone_click', { source: 'mobile_sticky' })}
+          className="flex-1 text-center py-2.5 rounded-md border border-cream-border text-sm font-semibold text-espresso-dark hover:bg-cream transition-colors"
+        >
+          Call Us
+        </a>
+        <a
+          href={bookingUrl('mobile_sticky')}
+          target="_blank"
+          rel="noopener noreferrer"
+          onClick={() => handleBookRepair('mobile_sticky')}
+          className="flex-1 text-center py-2.5 rounded-md bg-amber-cafe text-white text-sm font-semibold hover:bg-amber-700 transition-colors"
+        >
+          Book a Repair
+        </a>
+      </div>
+
+      {/* Back to top button */}
+      {showBackToTop && (
+        <button
+          onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
+          className="fixed bottom-20 md:bottom-8 right-4 z-20 w-10 h-10 rounded-full bg-white border border-cream-border shadow-md flex items-center justify-center text-espresso-muted hover:text-espresso-dark hover:border-espresso-muted transition-all"
+          aria-label="Back to top"
+        >
+          <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 15l7-7 7 7" /></svg>
+        </button>
+      )}
     </div>
   );
 }
