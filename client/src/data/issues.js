@@ -742,4 +742,121 @@ export const ISSUES = [
     technicalDetail: `Gear pump profiling for the La Marzocco Linea Mini (LMLM AV-ABR mod) is the flagship project of the LMPP Discord community. Key resources:\n- **Home-Barista.com thread**: t94556 — "La Marzocco Linea Mini AV-ABR Gear Pump Profiling Mod"\n- **LMPP Discord** (invite-only): #general channel has 100s of messages on bracket design, sensor selection, and firmware\n- **WE Coffee Co. YouTube**: video demonstrating the mod with Acaia Lunar Brew integration\n- **Firmware / kaffee-netz.de**: LMLM firmware download documented in the LMPP Discord\n\nInspired by the Gaggiuino project (open-source profiling for Gaggia machines), which itself was inspired by the Decent DE1. The Strada EP from La Marzocco and the Decent DE1 remain the commercial/prosumer benchmarks for flow profiling capability.\n\nThe Lelit Bianca uses a similar paddle-wheel approach for flow profiling — community member Magnus has documented the GS3 AV APEC SoM adaptation, noting that the GS3 is easier to work on than the Bianca for this type of modification.`,
     diy: 'tech',
   },
+
+  // ─────────── PUMP IDENTIFICATION GUIDE ───────────
+  {
+    id: 'pump-identification-guide',
+    title: 'Identifying and sourcing the right replacement pump',
+    category: 'pump',
+    tiers: ['prosumer', 'mid', 'highend', 'all'],
+    difficulty: 'beginner',
+    symptoms: [
+      'Need to replace the pump but unsure which model to order',
+      'Replacement pump arrived but fittings or orientation do not match',
+      'Looking for an upgrade from vibratory to rotary pump',
+      'Pump label is worn or unreadable',
+    ],
+    summary: 'Espresso machines use either vibration (ULKA/Invensys) pumps or rotary pumps. Ordering the wrong model is the most common sourcing mistake — identifying your pump type and fitting size before ordering saves time and money.',
+    cause: 'Two main pump families: vibration pumps (ULKA EX5, EP5, EX4, EP4) and rotary pumps (Fluid-o-Tech, Procon). Fitting orientation (vertical, horizontal, angled) varies by machine. Wattage and voltage must match your region.',
+    solution: `1. **Locate the pump label**: Open the machine and look for a white or silver label on the pump body. You need the model number (e.g., "ULKA EX5", "EP5", "E Type").
+2. **Measure fittings**: Note the inlet and outlet fitting size. Most home/prosumer machines use 1/8" BSP or push-fit barb fittings. Commercial rotary pumps often use 3/8" NPT or 1/4" BSP.
+3. **Check orientation**: Vibration pumps install vertically (most common) or horizontally. The pump head must face the same direction as the original.
+4. **Verify voltage and wattage**: Match exactly — 120V/60Hz for North America, 220-240V/50Hz for Europe. Most home machine vibratory pumps are 48W (EX5) or 70W (EP5).
+5. **Order from a known supplier**: Espresso Parts, Chris Coffee, Whole Latte Love, or the manufacturer's authorized parts distributor. Avoid generic pumps with no brand markings.`,
+    technicalDetail: `**ULKA EX5 vs EP5**: The EX5 is the standard pump in most home and prosumer machines (48W, single-phase, 230V or 120V). The EP5 is a higher-power variant (70W) used in higher-volume machines. They are physically interchangeable if the fittings match, but the EP5 produces slightly more pressure — avoid in machines calibrated for lower pressure unless you plan to recalibrate the OPV.
+
+**Brass vs. plastic fittings**: Pumps come with either brass or nylon/plastic push-fit barb connections. Both are reliable, but plastic fittings are more fragile during installation — use compression fittings where possible.
+
+**Rotary pump upgrades**: Fluid-o-Tech POMS series (200/300/400 series) are the standard upgrade for home prosumer machines. Rotary pumps produce lower noise, more consistent pressure, and longer service life, but require a separate motor, additional plumbing, and a pressure-limiting valve or OPV calibration.
+
+**Where to source**: For North American buyers, Espresso Parts Northwest (espressoparts.com) and 1st-line Equipment carry genuine ULKA and Fluid-o-Tech pumps. For European buyers, Espresso Outlet UK and Coffee Parts Europe carry the same.`,
+    diy: 'intermediate',
+  },
+
+  // ─────────── STEAM DIAGNOSIS FLOWCHART ───────────
+  {
+    id: 'steam-diagnosis-flowchart',
+    title: 'Steam system diagnosis: nozzle, valve, or boiler?',
+    category: 'steam',
+    tiers: ['prosumer', 'mid', 'highend', 'all'],
+    difficulty: 'intermediate',
+    symptoms: [
+      'Steam is weak, intermittent, or absent — unsure where to start diagnosis',
+      'Machine produces steam but pressure seems lower than it should be',
+      'Steam works sometimes but cuts out during use',
+      'Steam wand drips or leaks when the valve is closed',
+    ],
+    summary: 'Steam problems can originate at four points: the nozzle tip, the steam valve, the steam boiler or thermoblock, or the machine\'s heating control. Accurate diagnosis before replacing parts saves time and money.',
+    cause: 'The most common cause is a clogged nozzle tip (blocked by dried milk or scale). Second most common is a failing steam valve (solenoid or manual). Boiler or thermoblock scale is a distant third in properly maintained machines.',
+    solution: `**Step 1 — Test with no portafilter (open wand test)**
+Turn on the steam wand with nothing attached to the tip. If steam flows freely with good pressure, the problem is in the nozzle or milk path — not the valve or boiler.
+
+**Step 2 — Check the nozzle tip**
+Remove the nozzle tip (usually unscrews counter-clockwise). Soak in a cup of hot water mixed with Cafiza/Puro Caff for 10–15 minutes. Rinse and reinstall. Test again.
+
+**Step 3 — If no improvement, test the steam valve**
+With nozzle removed, open the steam valve. If steam flows strongly: nozzle clog was the cause — replace nozzle. If steam is still weak: valve or boiler issue.
+
+**Step 4 — Check steam valve function**
+For solenoid valves: listen for a click when the steam button is pressed. No click = electrical fault or failed solenoid. Click but no flow = valve plunger stuck or scale-blocked.
+For manual valves: check for wear or damaged O-rings inside the valve body — these can prevent full opening.
+
+**Step 5 — Check boiler temperature**
+On machines with a pressure gauge, verify the steam boiler reaches its rated pressure (typically 1.0–1.5 bar). If pressure is consistently below 0.8 bar: thermostat/pressurestat may be failing or set too low.`,
+    technicalDetail: `**Solenoid valve testing**: Disconnect the solenoid coil wires and test resistance with a multimeter. Most steam solenoids read 10–30Ω. An open circuit (infinite resistance) means the coil is burned out and needs replacement.
+
+**Scale inside the steam boiler**: On machines with accessible boilers, scale accumulation on the heating element reduces heat transfer. This presents as a machine that reaches correct boiler pressure slowly or struggles to maintain pressure during extended steaming. Running a citric acid descale cycle addresses this without disassembly.
+
+**Thermoblock steam issues**: Thermoblock machines (e.g., most DeLonghi home automatics) heat water on-demand. If the thermoblock is scaled, steam output will degrade gradually. These machines almost always need a descale before component replacement.
+
+**Pressurestat vs. PID control**: On older prosumer machines (Rancilio Silvia, early Gaggia Classic), the steam boiler is controlled by a pressurestat. If the pressurestat is set too low or is drifting, steam pressure will be inadequate — adjust or replace. PID-controlled machines need the PID steam setpoint verified.`,
+    diy: 'intermediate',
+  },
+
+  // ─────────── ERROR CODE GUIDE ───────────
+  {
+    id: 'error-code-guide',
+    title: 'Understanding espresso machine error codes and alarm lights',
+    category: 'electronics',
+    tiers: ['superauto', 'home-superauto', 'mid', 'prosumer'],
+    difficulty: 'beginner',
+    symptoms: [
+      'Machine displays a numeric error code (e.g., E1, 8, A05)',
+      'Lights are flashing in an unusual pattern',
+      'Machine has stopped working and shows symbols you don\'t recognize',
+      'Machine enters a descale or rinse cycle repeatedly and won\'t exit',
+    ],
+    summary: 'Error codes and alarm lights are the machine\'s way of communicating a specific fault. Most codes point to either a maintenance task (descale needed, tray full) or a hardware failure (sensor, pump, or heating element). Looking up the specific code before attempting repairs is essential.',
+    cause: 'The code source depends on the manufacturer. Jura uses single-digit numeric codes and text messages. DeLonghi uses "AL" prefix codes. Breville uses "C" prefix codes. Saeco/Philips use blinking light patterns. Always check the manual first.',
+    solution: `**Step 1 — Note the exact code or light pattern**
+Write down exactly what you see: the number, letter prefix, and any accompanying symbols. For blinking lights, count the blink sequence (e.g., "3 fast blinks, pause, 2 slow blinks").
+
+**Step 2 — Check the machine manual**
+The manual typically has a troubleshooting section that maps error codes to causes. Download your manual from the manufacturer's website if you don't have it.
+
+**Step 3 — Run maintenance tasks first**
+About 80% of error codes on super-automatic machines are cleared by:
+- Emptying and reinserting the drip tray and grounds container
+- Completing a descale cycle (if descale indicator is on)
+- Running the rinse/purge cycle
+- Cleaning the brew unit (remove, rinse under water, reinsert)
+
+**Step 4 — Look up brand-specific codes**
+Common codes by brand:
+- **Jura**: E1 = grinder blocked; E8 = coffee grounds dispenser blocked; A1 = no water; A3 = descale required
+- **DeLonghi Magnifica/Perfecta**: AL1 = descale; AL2 = water tank empty; AL3 = waste container full; AL6 = coffee unit fault
+- **Breville**: Clean/descale alerts are displayed as text; hardware faults show as "C" codes in service mode
+- **Saeco/Philips**: Blinking red/orange lights indicate maintenance needs; see your model's specific pattern chart
+
+**Step 5 — If code persists after maintenance**
+A code that reappears immediately after clearing maintenance tasks indicates a hardware fault. Common hardware failures by code type: flow sensor failure, temperature sensor failure, pump failure, brew unit motor failure. These require component testing or professional service.`,
+    technicalDetail: `**Error code vs. maintenance alert distinction**: True error codes indicate hardware failure and require component testing. Maintenance alerts (fill water, empty grounds, descale) are normal and expected — they clear once the task is completed.
+
+**Jura service codes**: Jura machines have a hidden service mode accessible by holding specific button combinations. In service mode, raw sensor readings and component test functions are available. The Jura J.O.E. app (iOS/Android) can also read connected machine status and error history on WiFi-enabled models.
+
+**DeLonghi Dinamica/PrimaDonna codes**: These machines use a large display with text descriptions. If the text is cut off, cycle through the menus to read the full message. DeLonghi's service documentation (available from authorized dealers) maps AL codes to specific sensor and actuator failures.
+
+**PCB fault codes**: When a code appears that is not in the manual and doesn't clear with maintenance, the PCB (main control board) itself may be logging a diagnostic fault. On some Saeco and Jura models, the error code log can be read with a service cable connected to a PC. This is typically done by authorized service centers only.`,
+    diy: 'beginner',
+  },
 ];
