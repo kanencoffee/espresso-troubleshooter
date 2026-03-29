@@ -859,4 +859,290 @@ A code that reappears immediately after clearing maintenance tasks indicates a h
 **PCB fault codes**: When a code appears that is not in the manual and doesn't clear with maintenance, the PCB (main control board) itself may be logging a diagnostic fault. On some Saeco and Jura models, the error code log can be read with a service cable connected to a PC. This is typically done by authorized service centers only.`,
     diy: 'beginner',
   },
+
+  // ─────────── LEAK DETECTION GUIDE ───────────
+  {
+    id: 'leak-detection-guide',
+    title: 'How to find and diagnose internal espresso machine leaks',
+    category: 'seals',
+    tiers: ['home', 'mid', 'prosumer', 'commercial'],
+    difficulty: 'intermediate',
+    symptoms: [
+      'Water pooling under or inside the machine',
+      'Machine leaving a wet trail or dripping during brewing',
+      'Water level dropping faster than normal without visible output',
+      'Scale or corrosion staining on internal components',
+      'Machine trips GFCI or shows electrical issues after leak starts',
+    ],
+    summary: 'Internal leaks are almost never "just the gasket." There are five common leak origins: group head gasket, hose fittings, boiler fittings, pump head, and solenoid valve body. Finding the exact source before replacing parts saves time and money.',
+    cause: 'Leaks originate from worn seals, cracked hoses, corroded fittings, or failed solder joints on the boiler. The group head gasket is the most common failure on machines over 5 years old, but it accounts for maybe 30% of leaks — hose and fitting failures are equally common and often misdiagnosed.',
+    solution: `**Step 1 — Run the machine and observe with the housing removed**
+Remove the top and/or side panels (unplug first, then replug to run). Use a flashlight and watch the machine during a brew cycle. Look for: drips, mist, or wet spots that appear during pump activation or steam.
+
+**Step 2 — Identify the leak timing**
+- Leak only during brewing (pump active) → pump, group head, solenoid valve, or pressure hoses
+- Leak only during steam → steam valve, steam wand fitting, or steam boiler fitting
+- Continuous slow drip when idle → check valve failure or solenoid not seating properly
+- Leak from bottom only → lower hose fitting, pump base, or boiler drain fitting
+
+**Step 3 — Common leak locations to check first**
+1. **Group head gasket**: The rubber ring between the group head and portafilter. Squeeze the portafilter — if you can wiggle it up slightly or water drips around the seal ring, it's due.
+2. **Hose barb fittings**: Braided hoses press onto plastic or brass barbs. These crack and leak at the clamp point. Run your finger along every hose joint during operation.
+3. **Boiler inlet/outlet fittings**: Threaded fittings into the boiler body. Look for white mineral deposits (crystallized scale) around the joint — this indicates a slow ongoing leak.
+4. **Pump head body**: The pump has inlet and outlet ports. If the pump body is cracked or the fittings are loose, water will drip from the pump itself during operation.
+5. **Solenoid valve body**: The 3-way solenoid valve can crack or leak around its body seam on older machines.
+
+**Step 4 — Use paper towels to isolate the source**
+Dry all components before running the machine. Then run a brew cycle and immediately check each component area with dry paper towel. The first wet spot locates the leak.
+
+**Step 5 — Assess repair difficulty**
+- Group head gasket: DIY-friendly, $3–8 part, 30-minute job
+- Hose replacement: DIY-friendly, $5–15 per hose, requires correct ID/OD sizing
+- Boiler fitting: intermediate — thread sealant or fitting replacement, may need boiler removal
+- Boiler itself (cracked): professional repair or boiler replacement`,
+    technicalDetail: `**Pressure testing**: A pressure gauge with a portafilter blank (blind basket) can verify the pump is reaching spec (8–9 bar for espresso machines). If pressure is low AND there's a leak, fix the leak first — pressure loss and leaks can compound each other.
+
+**Hose sizing**: Espresso machine hoses are typically 8mm or 10mm ID silicone or EPDM. When replacing, match the inner diameter exactly. "Close enough" fittings will fail under pressure. Source replacement hoses from espresso parts suppliers rather than hardware stores — food-grade silicone rated to 180°C is required.
+
+**Thread sealant on boiler fittings**: Use food-safe PTFE thread tape or pipe sealant. Standard hardware store PTFE tape is acceptable for cold water fittings but may need multiple wraps for steam pressure fittings. Do not overtighten brass-to-brass fittings — hand-tight plus 1–2 turns is usually correct.
+
+**Water damage to electronics**: If a leak has been ongoing, inspect the PCB and wiring harness for corrosion. White or green deposits on connectors indicate water contact. Clean with isopropyl alcohol and check for broken insulation on wires near the leak path.`,
+    diy: 'intermediate',
+  },
+
+  // ─────────── DESCALING COMPLETE GUIDE ───────────
+  {
+    id: 'descaling-complete-guide',
+    title: 'Complete descaling guide: solutions, frequency, and full procedure',
+    category: 'maintenance',
+    tiers: ['home', 'home-superauto', 'mid', 'prosumer', 'superauto'],
+    difficulty: 'beginner',
+    symptoms: [
+      'Machine is running a descale alert or indicator light',
+      'Shot extraction is slower than normal (taking 40+ seconds)',
+      'Steam output has decreased noticeably',
+      'Machine is louder than usual during pump operation',
+      'Water flow appears restricted or inconsistent',
+    ],
+    summary: 'Descaling removes calcium and magnesium scale deposits from the boiler, heating element, thermoblock, and internal plumbing. Scale is the #1 cause of preventable machine failure. A proper descale takes 30–60 minutes and should be done every 2–3 months in hard water areas.',
+    cause: 'All water contains dissolved minerals. When water is heated repeatedly, these minerals precipitate out and adhere to heating surfaces. Scale insulates the heating element (causing higher energy use and slower heat-up), restricts water flow through small passages, and eventually causes heating element failure if left untreated.',
+    solution: `**Step 1 — Choose the right descaling solution**
+Use a food-safe, espresso-machine-rated acid solution. Recommended options:
+- **Citric acid** (cheapest): 15–20g dissolved in 1 liter of water. Effective on light-to-moderate scale.
+- **Brand-specific descalers** (DeLonghi EcoDecalk, Jura descaler, Breville Descaler): Pre-measured, pH-balanced for their machines. Use these if your warranty requires it.
+- **Avoid**: White vinegar (too mild, leaves smell), generic household descalers (may damage rubber seals).
+
+**Step 2 — Check your machine's descale procedure**
+Most super-automatic machines have a guided descale mode (enter via menu or button combination). Follow the on-screen prompts exactly — these cycles are timed to flush different parts of the machine sequentially.
+
+For machines without a guided cycle (manual espresso machines):
+1. Fill the tank with descaling solution
+2. Run water through the group head in 30-second intervals with 30-second pauses
+3. Run water through the steam wand the same way
+4. Alternate until tank is empty
+
+**Step 3 — Rinse cycle (critical)**
+After descaling, run 2–3 full tanks of fresh water through the machine to flush all acid residue. For super-automatics, use the built-in rinse program if available. Taste a shot of water — if it tastes acidic, rinse again.
+
+**Step 4 — Verify results**
+After descaling, extraction time should return to normal (25–30 seconds for a double shot). Steam should be noticeably stronger. If performance doesn't improve, consider whether the machine has advanced scale buildup requiring disassembly and manual cleaning of components.
+
+**Step 5 — Set your next reminder**
+- **Soft water areas** (< 7 gpg hardness): Every 3–4 months
+- **Medium water** (7–15 gpg): Every 2–3 months
+- **Hard water** (> 15 gpg): Monthly, or use a water filter/softener
+- Use distilled or filtered water to extend intervals`,
+    technicalDetail: `**Why citric acid works**: Calcium scale (CaCO₃) and magnesium scale react with citric acid to form soluble citrate salts that flush out with water. The reaction is: CaCO₃ + 2H⁺ → Ca²⁺ + H₂O + CO₂. Concentration matters — too weak (< 10g/L) won't dissolve heavy scale; too strong (> 30g/L) risks damaging rubber seals over time.
+
+**Thermoblock vs. boiler descaling**: Thermoblocks (used in most home super-automatics) are narrow-channel heat exchangers with very little capacity for scale before flow is impacted. They scale faster than boilers and respond well to regular light descaling. Traditional boilers have more volume and can tolerate more scale before performance degrades, but scale on the heating element causes more damage there.
+
+**When descaling isn't enough**: If the machine has never been descaled and is several years old, a single descale cycle may not fully remove heavy buildup. Running 2–3 consecutive descale cycles (with full rinse between each) is sometimes needed. For machines with completely blocked thermoblock passages or a scaled-up heating element, mechanical removal or part replacement may be required.
+
+**Water hardness testing**: Test strips (pool test strips work) or digital TDS meters let you measure your water hardness. TDS of 50–150 ppm is ideal for espresso. Above 200 ppm is hard water that scales quickly. Many coffee purists use a 50/50 blend of filtered and tap water.`,
+    diy: 'beginner',
+  },
+
+  // ─────────── PROFESSIONAL TUNE-UP GUIDE ───────────
+  {
+    id: 'professional-tuneup-guide',
+    title: 'What a professional espresso machine tune-up includes',
+    category: 'maintenance',
+    tiers: ['home', 'mid', 'prosumer', 'commercial'],
+    difficulty: 'beginner',
+    symptoms: [
+      'Machine is several years old and has never been professionally serviced',
+      'Shot quality has gradually degraded despite home maintenance',
+      'Machine is making unusual noises during operation',
+      'You\'re unsure whether your machine is running safely',
+      'Preparing to sell the machine and want it in top condition',
+    ],
+    summary: 'A professional tune-up goes beyond descaling and includes mechanical inspection, seal replacement, calibration, and deep cleaning of components that can\'t be accessed during home maintenance. Most machines benefit from a professional service every 12–24 months depending on usage.',
+    cause: 'Home maintenance (descaling, backflushing, cleaning the steam wand) keeps the accessible parts clean but doesn\'t address wear in seals, calibration drift in the OPV, scale in the boiler that requires manual scraping, or electrical connections that corrode over time.',
+    solution: `**What a typical professional tune-up includes:**
+
+**Mechanical inspection**
+- Group head seal and shower screen replacement (done every service regardless of condition)
+- Steam wand O-ring and tip inspection
+- Check valve inspection (prevents backflow into the pump)
+- Pump pressure test and measurement (target: 8–9 bar at the group)
+- OPV (over-pressure valve) calibration — most machines drift 0.5–2 bar over time
+
+**Cleaning**
+- Manual descale of boiler interior if accessible (removes scale that flush cycles don't reach)
+- Group head soaking and ultrasonic cleaning of screens and diffusers
+- Steam wand ultrasonic cleaning (milk proteins build up inside the wand)
+- Drip tray and drain path cleaning
+- Exterior cleaning and polishing
+
+**Electrical / safety checks**
+- Inspect wiring harness for wear, heat damage, or rodent damage
+- Test heating element resistance (should be 20–50Ω for most home machines)
+- Inspect PCB capacitors (bulging caps are a common failure mode)
+- Verify thermostat / pressurestat / PID is operating within spec
+
+**Calibration**
+- Set OPV to correct brew pressure for the machine type
+- For PID machines: verify temperature accuracy with a calibrated probe
+- For grinders: set burr alignment and calibrate grind for standard shot time
+
+**How often?**
+- Casual home use (1–2 shots/day): Every 18–24 months
+- Moderate home use (3–5 shots/day): Every 12 months
+- Office or light commercial use: Every 6 months
+- High-volume commercial: Every 3–6 months`,
+    technicalDetail: `**OPV calibration detail**: The over-pressure valve limits maximum brew pressure. Stock settings are often 9–12 bar from the factory; serious home baristas typically set this to 8–9 bar. The OPV is adjusted with a spring-loaded screw — one quarter turn changes pressure by roughly 0.5 bar. Always verify with a calibrated pressure gauge (or portafilter gauge) after adjustment.
+
+**Pump pressure vs. OPV setting**: The pump generates pressure, the OPV limits it. If you measure low pressure (6–7 bar) and the OPV is set correctly, the pump itself may be worn. Ulka pumps (standard in most home machines) typically last 3,000–5,000 brew cycles — roughly 5–10 years of average home use.
+
+**Group head seal replacement intervals**: Natural rubber group gaskets harden and compress over time, eventually leaking. Silicone gaskets last longer but are more expensive. Replacing the group gasket every 12–18 months is inexpensive (typically $5–10) and prevents leaks from developing. Waiting until the machine leaks means the gasket has been creating a poor seal for an unknown period.
+
+**Cost expectations**: A professional tune-up at an authorized service center typically costs $100–200 for a home machine, $150–300 for a prosumer machine, and $250–500 for commercial equipment. Parts (seals, group gasket) are usually $20–40 additional. Total cost of ownership is much lower with regular service versus waiting for a major failure.`,
+    diy: 'beginner',
+  },
+
+  // ─────────── GRINDER DIAGNOSIS GUIDE ───────────
+  {
+    id: 'grinder-diagnosis-guide',
+    title: 'Diagnosing built-in espresso grinder problems: motor vs. burrs',
+    category: 'grinder',
+    tiers: ['home-superauto', 'mid', 'prosumer', 'superauto'],
+    difficulty: 'intermediate',
+    symptoms: [
+      'Grinder is making an unusual grinding or squealing noise',
+      'Grind output is inconsistent or has coarse chunks',
+      'Grinder runs but produces little or no grounds',
+      'Grinder stalls or stops mid-grind',
+      'Coffee tastes different despite no change in settings',
+    ],
+    summary: 'Built-in grinder problems fall into three categories: burr wear (poor grind quality), burr blockage (stall or jam), and motor failure (no movement). The diagnosis approach is different for each. Most built-in grinder issues are user-serviceable with basic tools.',
+    cause: 'Burrs wear gradually over millions of rotations. For most home users, this takes 5–10 years of regular use. Blockages happen when beans jam between the burr and housing — often after grinding oily, dark-roast beans or foreign objects accidentally enter the hopper. Motor failures are less common and usually present as a complete loss of grinder function.',
+    solution: `**Step 1 — Identify the symptom category**
+
+**Grinder runs but output is inconsistent or coarse:**
+This is typically a burr issue. Check:
+- Are you grinding at the correct setting for espresso (fine)?
+- When did you last clean the burr chamber? Built-up coffee oils can cause inconsistent grinding.
+- Have you recently switched bean types? Oily dark roasts affect grinding differently than light roasts.
+
+**Grinder stalls or jams:**
+1. Remove the bean hopper if possible
+2. Use a thin tool (wooden chopstick, not metal) to check for a bean stuck in the grinding chamber
+3. On super-automatics: remove and clean the brew unit, then test — brew unit blockages can back-pressure the grinder
+4. If the grinder jams repeatedly with normal beans: check burr gap alignment
+
+**Grinder runs but produces no coffee:**
+Check whether the grinder path is clear from hopper to brew unit. On Jura and DeLonghi super-automatics, the ground coffee chute can become completely blocked with compacted old coffee — remove the brew unit and clear the chute.
+
+**No movement, no sound:**
+- Check for error codes on the display (see error-code-guide)
+- Test whether the machine responds to other commands (heating up, etc.)
+- If the machine is otherwise functional, the grinder motor may have failed
+
+**Step 2 — Burr cleaning procedure**
+1. Empty the hopper completely
+2. Run a few cycles with a commercial grinder cleaner tablet (Grindz or equivalent) — this absorbs oils and clears fine coffee dust
+3. For accessible burrs (prosumer machines): remove the top burr carrier, brush off grounds, and wipe the burr faces with a dry cloth
+4. Do not use water to clean burrs — moisture causes rust and grounds to clump
+
+**Step 3 — Motor vs. burr determination**
+If the grinder motor runs (you hear it) but output is poor: burr issue.
+If the motor doesn't run at all: electrical issue — test for power at the motor connector with a multimeter. If power is present but motor doesn't turn: motor failure. If no power: relay, PCB, or wiring issue.`,
+    technicalDetail: `**Burr replacement timing**: Most home machine burrs are rated for 500–800 kg of coffee before significant wear. For a household grinding 250g per week, that's 4–6 years. Worn burrs produce more fines and bimodal particle distribution, which causes bitter, over-extracted shots even at correct settings. A comparison test: grind a small amount and visually inspect — worn burrs produce noticeably more powder (fines) alongside the coarser particles.
+
+**Burr gap calibration (prosumer machines)**: After cleaning or replacing burrs, verify the zero-point calibration — the adjustment at which the burrs just barely touch when rotating. Most machines have a locking collar and reference mark. If the zero point has drifted (common after dropping or forcing the grinder), recalibrate before setting grind size. Incorrect zero-point calibration makes fine adjustment useless.
+
+**Motor testing**: DC grinder motors read 1–10Ω across the brushes when tested with an ohmmeter. An open circuit indicates burned brushes or a failed armature. AC induction motors (less common in home machines) are harder to test without a load — check the capacitor first (capacitor failure causes hum with no rotation in single-phase AC motors).
+
+**Static electricity and grind clumping**: Some grinders produce static-charged grounds that clump together. This is a physical property of the grinder and burr material, not a fault. Remedies include: the Ross Droplet Technique (RDT — adding a few drops of water to beans before grinding), using an anti-static brew cup, or upgrading to a machine with ionizer technology (some Jura models include this).`,
+    diy: 'intermediate',
+  },
+
+  // ─────────── WHAT HAPPENS IN SERVICE ───────────
+  {
+    id: 'what-happens-in-service',
+    title: 'What happens when you send your espresso machine in for service',
+    category: 'maintenance',
+    tiers: ['home', 'home-superauto', 'mid', 'prosumer', 'commercial'],
+    difficulty: 'beginner',
+    symptoms: [
+      'Considering professional service and want to know what\'s involved',
+      'Wondering why a repair video doesn\'t show every step',
+      'Machine returned from service and you want to understand what was done',
+      'Comparing DIY repair cost/time against professional service',
+    ],
+    summary: 'Professional espresso machine service follows a systematic process: intake assessment, diagnosis, repair, calibration, and a final run test before return. Not every step is filmed — some procedures are repetitive or happen on machines belonging to other customers at the same time.',
+    cause: 'Understanding the service process helps set expectations for turnaround time, cost, and what you\'ll see in repair videos. Most videos show the diagnosis and the specific repair — not the full cleaning and calibration that happens after every repair regardless of the chief complaint.',
+    solution: `**The service process at Kanen Coffee:**
+
+**1. Intake assessment (Day 1)**
+Every machine that comes in gets an intake inspection before any work begins:
+- Physical inspection (cracks, damage from transit, missing parts)
+- Power-on test to reproduce the reported issue
+- Water pressure and temperature measurement
+- Quick visual inspection of internal components for obvious problems
+- Work order created with initial findings
+
+**2. Diagnosis**
+For complex issues, diagnosis can take longer than the repair itself:
+- Systematic elimination of possible causes
+- Component testing (pump, heating element, solenoid valves, sensors)
+- This is what most repair videos show — the "detective" phase
+
+**3. Repair**
+The actual repair depends on what diagnosis found:
+- Parts sourced from our inventory or ordered (parts arrival can add 1–3 days)
+- Disassembly to access the failed component
+- Replacement or cleaning of the specific part
+- Reassembly
+
+**4. Post-repair service (done on every machine)**
+Even when the repair is a single part, we do a complete tune-up before return:
+- Group head seal replacement
+- Full descale cycle
+- Backflush cleaning
+- Steam wand cleaning and O-ring inspection
+
+**5. Calibration and testing**
+- OPV pressure set to spec (8–9 bar)
+- Shot extraction timed (target 25–30 seconds for a double)
+- Steam output verified
+- Any error codes cleared
+
+**6. Final run test**
+Machine runs for a full brew and steam cycle before being packaged. Any issue found at this stage goes back to step 3.
+
+**Why not everything is on video:**
+- Some repairs are straightforward and show the same steps every time — we prioritize unique or educational content
+- Cleaning and calibration steps are repetitive and not filmed on every machine
+- Customer privacy — we don't film every machine's condition on intake
+- Some repairs happen across multiple machines simultaneously`,
+    technicalDetail: `**Turnaround time expectations**: Simple repairs (group gasket, thermostat, pump) typically complete in 1–3 business days once parts arrive. Complex PCB repairs, boiler replacements, or machines requiring multiple ordered parts can take 5–10 business days. Machines needing manufacturer-only parts (some Jura and Miele components) may take 2–3 weeks for parts arrival.
+
+**Repair vs. replace economics**: For machines where repair cost exceeds 60–70% of replacement cost, we discuss the options with the customer before proceeding. A 10-year-old home machine worth $200 used may not justify a $150 repair for a PCB failure, but a $2,000 prosumer machine is worth repairing almost regardless of cost.
+
+**Warranty on repairs**: Professional repairs typically carry a 90-day warranty on parts and labor for the specific component repaired. General wear items (group gaskets, hoses) replaced during service are covered for 30 days. The warranty covers the repair — not new problems that develop on other components afterward.
+
+**What "diagnosed and fixed" means in our video titles**: Every video we publish shows a machine that was fully repaired and passed our final run test. The title format "Diagnosed & Fixed" means: we found the root cause, corrected it, and verified the machine works correctly. We don't publish videos on machines with unknown outcomes.`,
+    diy: 'beginner',
+  },
 ];
