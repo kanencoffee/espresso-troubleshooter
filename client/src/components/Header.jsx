@@ -40,14 +40,14 @@ export default function Header({ searchQuery = '', onSearchChange, onSearchTrack
               <h1 className="text-base font-semibold text-espresso-dark leading-tight">
                 Espresso Troubleshooting
               </h1>
-              <p className="text-xs text-espresso-muted hidden sm:block">
+              <p className="text-xs text-espresso-muted hidden xs:block">
                 Kanen Coffee — Diagnose &amp; fix common machine problems
               </p>
             </div>
           </a>
 
           {/* Search — left of nav links */}
-          <div className="relative flex-1 max-w-xs hidden sm:block">
+          <div className="relative flex-1 max-w-xs hidden xs:block">
             <span
               className="absolute left-3 top-1/2 -translate-y-1/2 text-espresso-muted text-sm"
               aria-hidden="true"
@@ -115,7 +115,7 @@ export default function Header({ searchQuery = '', onSearchChange, onSearchTrack
         </div>
 
         {/* Mobile search — always visible on small screens */}
-        <div className="relative mt-3 sm:hidden">
+        <div className="relative mt-3 xs:hidden">
           <span
             className="absolute left-3 top-1/2 -translate-y-1/2 text-espresso-muted text-sm"
             aria-hidden="true"
