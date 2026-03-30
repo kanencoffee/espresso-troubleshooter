@@ -182,7 +182,7 @@ export default function App() {
           <ElectricalSafetyBanner />
         )}
         {filteredWithNum.length === 0 ? (
-          <EmptyState onClear={clearAll} />
+          <EmptyState onClear={clearAll} searchQuery={searchQuery.trim()} />
         ) : (
           <div className="space-y-3">
             {filteredWithNum.map(({ issue, num }) => (

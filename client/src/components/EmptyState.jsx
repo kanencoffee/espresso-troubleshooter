@@ -1,16 +1,18 @@
-export default function EmptyState({ onClear }) {
+export default function EmptyState({ onClear, searchQuery, bookRepairUrl, onBookRepair }) {
   return (
-    <div className="text-center py-16 px-4">
+    <div className="text-center py-12 px-4">
       <div className="text-5xl mb-4" aria-hidden="true">🔍</div>
-      <h3 className="text-lg font-medium text-espresso-dark mb-2">No issues match your filters</h3>
+      <h3 className="text-2xl font-bold text-espresso-dark mb-2">
+        No results for{searchQuery ? <> &ldquo;<span className="text-amber-cafe">{searchQuery}</span>&rdquo;</> : ' your filters'}
+      </h3>
       <p className="text-espresso-muted mb-6 max-w-sm mx-auto">
-        Try adjusting your machine tier, category, or search query to find relevant troubleshooting guides.
+        We don&rsquo;t have a guide for that yet — but our technicians have seen it all.
       </p>
       <button
         onClick={onClear}
-        className="px-4 py-2 bg-amber-cafe text-white text-sm font-medium rounded-md hover:bg-amber-700 transition-colors"
+        className="text-sm text-espresso-muted underline underline-offset-2 hover:text-espresso-dark transition-colors"
       >
-        Clear all filters
+        Clear search and show all issues
       </button>
     </div>
   );
