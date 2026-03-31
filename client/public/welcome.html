@@ -1,0 +1,676 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Berkeley Espresso Machine Repair | Kanen Coffee</title>
+  <meta name="description" content="Berkeley's espresso machine experts. 5,500+ repair videos, expert diagnosis, and refurbished machines. Get a free quote today." />
+  <link rel="canonical" href="https://help.kanencoffee.com/welcome" />
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+
+  <!-- Open Graph / Meta Ads -->
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://help.kanencoffee.com/welcome" />
+  <meta property="og:title" content="Berkeley's Espresso Machine Experts | Kanen Coffee" />
+  <meta property="og:description" content="5,500+ repair videos. Expert diagnosis and repair for every major brand. Serving the Bay Area since 2011." />
+  <meta property="og:image" content="https://help.kanencoffee.com/og-image.jpg" />
+  <meta property="og:site_name" content="Kanen Coffee" />
+
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+
+  <!-- Google Analytics 4 -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-30FF0VQ3YG"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-30FF0VQ3YG', {
+      page_title: 'Meta Landing Page',
+      page_location: window.location.href,
+      send_page_view: true
+    });
+    function track(event, params) {
+      gtag('event', event, params);
+    }
+  </script>
+
+  <!-- Meta Pixel (placeholder - replace YOUR_PIXEL_ID) -->
+  <script>
+    !function(f,b,e,v,n,t,s)
+    {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+    n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+    if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+    n.queue=[];t=b.createElement(e);t.async=!0;
+    t.src=v;s=b.getElementsByTagName(e)[0];
+    s.parentNode.insertBefore(t,s)}(window, document,'script',
+    'https://connect.facebook.net/en_US/fbevents.js');
+    // fbq('init', 'YOUR_PIXEL_ID');
+    // fbq('track', 'PageView');
+  </script>
+
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --cream: #FAF7F2;
+      --cream-border: #E8E0D5;
+      --espresso-dark: #1C1410;
+      --espresso-muted: #594D42;
+      --amber-cafe: #B45309;
+      --amber-hover: #92400E;
+      --amber-light: #FEF3C7;
+      --white: #FFFFFF;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'Inter', system-ui, -apple-system, sans-serif;
+      color: var(--espresso-dark);
+      background: var(--cream);
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+    }
+
+    /* ---- HERO ---- */
+    .hero {
+      background: linear-gradient(135deg, var(--espresso-dark) 0%, #2D2018 100%);
+      color: var(--white);
+      padding: 3rem 1.25rem 2.5rem;
+      text-align: center;
+    }
+
+    .hero-badge {
+      display: inline-block;
+      background: rgba(180, 83, 9, 0.25);
+      border: 1px solid rgba(180, 83, 9, 0.5);
+      color: var(--amber-light);
+      font-size: 0.75rem;
+      font-weight: 600;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+      padding: 0.35rem 0.85rem;
+      border-radius: 999px;
+      margin-bottom: 1.25rem;
+    }
+
+    .hero h1 {
+      font-size: 2rem;
+      font-weight: 800;
+      line-height: 1.15;
+      margin-bottom: 1rem;
+      letter-spacing: -0.02em;
+    }
+
+    .hero h1 span {
+      color: #F59E0B;
+    }
+
+    .hero p {
+      font-size: 1.05rem;
+      color: #C4B5A6;
+      max-width: 500px;
+      margin: 0 auto 1.75rem;
+      line-height: 1.5;
+    }
+
+    .hero-cta {
+      display: flex;
+      flex-direction: column;
+      gap: 0.75rem;
+      max-width: 340px;
+      margin: 0 auto;
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.5rem;
+      padding: 0.875rem 1.5rem;
+      border-radius: 0.5rem;
+      font-size: 1rem;
+      font-weight: 600;
+      text-decoration: none;
+      transition: all 0.2s;
+      cursor: pointer;
+      border: none;
+    }
+
+    .btn-primary {
+      background: var(--amber-cafe);
+      color: var(--white);
+    }
+
+    .btn-primary:hover { background: var(--amber-hover); }
+
+    .btn-secondary {
+      background: transparent;
+      color: var(--white);
+      border: 1.5px solid rgba(255,255,255,0.3);
+    }
+
+    .btn-secondary:hover {
+      border-color: rgba(255,255,255,0.6);
+      background: rgba(255,255,255,0.05);
+    }
+
+    /* ---- TRUST BAR ---- */
+    .trust-bar {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 0;
+      background: var(--white);
+      border-bottom: 1px solid var(--cream-border);
+    }
+
+    .trust-item {
+      padding: 1.25rem 0.5rem;
+      text-align: center;
+      border-right: 1px solid var(--cream-border);
+    }
+
+    .trust-item:last-child { border-right: none; }
+
+    .trust-number {
+      font-size: 1.5rem;
+      font-weight: 800;
+      color: var(--amber-cafe);
+      line-height: 1.2;
+    }
+
+    .trust-label {
+      font-size: 0.7rem;
+      color: var(--espresso-muted);
+      font-weight: 500;
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+      margin-top: 0.15rem;
+    }
+
+    /* ---- SECTION ---- */
+    .section {
+      padding: 2.5rem 1.25rem;
+      max-width: 600px;
+      margin: 0 auto;
+    }
+
+    .section-title {
+      font-size: 1.35rem;
+      font-weight: 700;
+      margin-bottom: 0.5rem;
+      text-align: center;
+    }
+
+    .section-subtitle {
+      font-size: 0.95rem;
+      color: var(--espresso-muted);
+      text-align: center;
+      margin-bottom: 1.75rem;
+    }
+
+    /* ---- SERVICE CARDS ---- */
+    .services {
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+    }
+
+    .service-card {
+      background: var(--white);
+      border: 1px solid var(--cream-border);
+      border-radius: 0.75rem;
+      padding: 1.25rem;
+      display: flex;
+      align-items: flex-start;
+      gap: 1rem;
+      transition: box-shadow 0.2s;
+    }
+
+    .service-card:hover {
+      box-shadow: 0 2px 8px rgba(28,20,16,0.08);
+    }
+
+    .service-icon {
+      font-size: 1.75rem;
+      flex-shrink: 0;
+      width: 48px;
+      height: 48px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: var(--amber-light);
+      border-radius: 0.5rem;
+    }
+
+    .service-card h3 {
+      font-size: 1rem;
+      font-weight: 600;
+      margin-bottom: 0.25rem;
+    }
+
+    .service-card p {
+      font-size: 0.875rem;
+      color: var(--espresso-muted);
+      line-height: 1.45;
+    }
+
+    /* ---- BRANDS ---- */
+    .brand-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 0.75rem;
+      text-align: center;
+    }
+
+    .brand-chip {
+      background: var(--white);
+      border: 1px solid var(--cream-border);
+      border-radius: 0.5rem;
+      padding: 0.75rem 0.5rem;
+      font-size: 0.8rem;
+      font-weight: 600;
+      color: var(--espresso-dark);
+    }
+
+    /* ---- YOUTUBE PROOF ---- */
+    .yt-section {
+      background: var(--white);
+      border-top: 1px solid var(--cream-border);
+      border-bottom: 1px solid var(--cream-border);
+    }
+
+    .yt-link {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.5rem;
+      margin-top: 1.25rem;
+      padding: 0.75rem 1.25rem;
+      background: #FF0000;
+      color: var(--white);
+      border-radius: 0.5rem;
+      text-decoration: none;
+      font-weight: 600;
+      font-size: 0.95rem;
+      transition: background 0.2s;
+    }
+
+    .yt-link:hover { background: #CC0000; }
+
+    .yt-link svg {
+      width: 24px;
+      height: 24px;
+      flex-shrink: 0;
+    }
+
+    .yt-stats {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 1rem;
+      margin-top: 1.5rem;
+    }
+
+    .yt-stat {
+      text-align: center;
+    }
+
+    .yt-stat-number {
+      font-size: 1.75rem;
+      font-weight: 800;
+      color: var(--espresso-dark);
+    }
+
+    .yt-stat-label {
+      font-size: 0.8rem;
+      color: var(--espresso-muted);
+    }
+
+    /* ---- TESTIMONIAL / QUOTE ---- */
+    .quote-block {
+      background: var(--amber-light);
+      border-left: 4px solid var(--amber-cafe);
+      border-radius: 0 0.5rem 0.5rem 0;
+      padding: 1.25rem;
+      margin-top: 1.5rem;
+    }
+
+    .quote-block p {
+      font-style: italic;
+      font-size: 0.95rem;
+      color: var(--espresso-dark);
+      line-height: 1.5;
+    }
+
+    .quote-block cite {
+      display: block;
+      font-style: normal;
+      font-size: 0.8rem;
+      color: var(--espresso-muted);
+      margin-top: 0.5rem;
+      font-weight: 500;
+    }
+
+    /* ---- LOCATION ---- */
+    .location-card {
+      background: var(--white);
+      border: 1px solid var(--cream-border);
+      border-radius: 0.75rem;
+      padding: 1.5rem;
+      text-align: center;
+    }
+
+    .location-card h3 {
+      font-size: 1.1rem;
+      font-weight: 700;
+      margin-bottom: 0.5rem;
+    }
+
+    .location-detail {
+      font-size: 0.9rem;
+      color: var(--espresso-muted);
+      margin-bottom: 0.25rem;
+    }
+
+    .location-detail a {
+      color: var(--amber-cafe);
+      text-decoration: none;
+      font-weight: 500;
+    }
+
+    .location-detail a:hover { text-decoration: underline; }
+
+    .location-map-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.35rem;
+      margin-top: 0.75rem;
+      font-size: 0.85rem;
+      color: var(--amber-cafe);
+      font-weight: 600;
+      text-decoration: none;
+    }
+
+    .location-map-link:hover { text-decoration: underline; }
+
+    /* ---- BOTTOM CTA ---- */
+    .bottom-cta {
+      background: linear-gradient(135deg, var(--espresso-dark) 0%, #2D2018 100%);
+      color: var(--white);
+      padding: 2.5rem 1.25rem;
+      text-align: center;
+    }
+
+    .bottom-cta h2 {
+      font-size: 1.5rem;
+      font-weight: 700;
+      margin-bottom: 0.5rem;
+    }
+
+    .bottom-cta p {
+      font-size: 0.95rem;
+      color: #C4B5A6;
+      margin-bottom: 1.5rem;
+      max-width: 400px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    .bottom-cta .hero-cta {
+      max-width: 340px;
+    }
+
+    /* ---- STICKY MOBILE CTA ---- */
+    .sticky-cta {
+      position: fixed;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      z-index: 50;
+      background: var(--white);
+      border-top: 1px solid var(--cream-border);
+      padding: 0.75rem 1rem;
+      display: flex;
+      gap: 0.75rem;
+    }
+
+    .sticky-cta .btn {
+      flex: 1;
+      padding: 0.75rem 1rem;
+      font-size: 0.9rem;
+    }
+
+    .sticky-cta .btn-outline {
+      background: transparent;
+      color: var(--espresso-dark);
+      border: 1.5px solid var(--cream-border);
+    }
+
+    .sticky-cta .btn-outline:hover {
+      background: var(--cream);
+    }
+
+    /* ---- FOOTER ---- */
+    footer {
+      padding: 1.5rem 1.25rem 6rem; /* extra bottom for sticky CTA */
+      text-align: center;
+    }
+
+    footer p {
+      font-size: 0.75rem;
+      color: var(--espresso-muted);
+      line-height: 1.5;
+    }
+
+    footer a {
+      color: var(--amber-cafe);
+      text-decoration: none;
+    }
+
+    footer a:hover { text-decoration: underline; }
+
+    /* ---- DESKTOP ---- */
+    @media (min-width: 768px) {
+      .hero { padding: 4rem 2rem 3rem; }
+      .hero h1 { font-size: 2.75rem; }
+      .hero p { font-size: 1.15rem; }
+      .hero-cta {
+        flex-direction: row;
+        max-width: 480px;
+      }
+      .hero-cta .btn { flex: 1; }
+      .trust-number { font-size: 1.75rem; }
+      .trust-label { font-size: 0.8rem; }
+      .section { padding: 3rem 2rem; }
+      .brand-grid { grid-template-columns: repeat(4, 1fr); }
+      .sticky-cta { display: none; }
+      footer { padding-bottom: 2rem; }
+      .bottom-cta .hero-cta {
+        flex-direction: row;
+        max-width: 480px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- HERO -->
+  <section class="hero">
+    <div class="hero-badge">Serving the Bay Area Since 2011</div>
+    <h1>Berkeley's <span>Espresso Machine</span> Experts</h1>
+    <p>Expert diagnosis and repair for every major brand. Plus refurbished machines tested in our shop and backed by warranty.</p>
+    <div class="hero-cta">
+      <a href="https://www.kanencoffee.com/refurbished-espresso-machines?utm_source=meta&utm_medium=paid&utm_campaign=cold_traffic&utm_content=hero_browse"
+         class="btn btn-primary"
+         onclick="track('cta_click', {source: 'hero', type: 'browse_machines'})">
+        Browse Our Machines
+      </a>
+      <a href="https://www.kanencoffee.com/bookappointment?utm_source=meta&utm_medium=paid&utm_campaign=cold_traffic&utm_content=hero_quote"
+         class="btn btn-secondary"
+         onclick="track('cta_click', {source: 'hero', type: 'free_quote'})">
+        Get a Free Quote
+      </a>
+    </div>
+  </section>
+
+  <!-- TRUST BAR -->
+  <div class="trust-bar">
+    <div class="trust-item">
+      <div class="trust-number">5,500+</div>
+      <div class="trust-label">Repair Videos</div>
+    </div>
+    <div class="trust-item">
+      <div class="trust-number">15+</div>
+      <div class="trust-label">Years Experience</div>
+    </div>
+    <div class="trust-item">
+      <div class="trust-number">30+</div>
+      <div class="trust-label">Brands Serviced</div>
+    </div>
+  </div>
+
+  <!-- SERVICES -->
+  <div class="section">
+    <h2 class="section-title">What We Do</h2>
+    <p class="section-subtitle">From quick fixes to full rebuilds, we handle it all.</p>
+    <div class="services">
+      <div class="service-card">
+        <div class="service-icon">&#9874;</div>
+        <div>
+          <h3>Expert Repair</h3>
+          <p>Pump issues, steam problems, leaks, grinder failures, electronics — we diagnose and fix it right the first time.</p>
+        </div>
+      </div>
+      <div class="service-card">
+        <div class="service-icon">&#9733;</div>
+        <div>
+          <h3>Refurbished Machines</h3>
+          <p>Shop-tested espresso machines from top brands, fully serviced and backed by our warranty. Ready to brew.</p>
+        </div>
+      </div>
+      <div class="service-card">
+        <div class="service-icon">&#128218;</div>
+        <div>
+          <h3>Free Troubleshooting</h3>
+          <p>Not sure what's wrong? Use our <a href="https://help.kanencoffee.com/" style="color: var(--amber-cafe); font-weight: 500;">free troubleshooting guide</a> to diagnose 20+ common issues.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- BRANDS -->
+  <div class="section" style="padding-top: 0;">
+    <h2 class="section-title">Brands We Service</h2>
+    <p class="section-subtitle">Authorized service center for leading espresso brands.</p>
+    <div class="brand-grid">
+      <div class="brand-chip">Breville</div>
+      <div class="brand-chip">DeLonghi</div>
+      <div class="brand-chip">Jura</div>
+      <div class="brand-chip">Rancilio</div>
+      <div class="brand-chip">Gaggia</div>
+      <div class="brand-chip">Rocket</div>
+      <div class="brand-chip">La Pavoni</div>
+      <div class="brand-chip">Saeco</div>
+      <div class="brand-chip">Lelit</div>
+      <div class="brand-chip">Eureka</div>
+      <div class="brand-chip">Baratza</div>
+      <div class="brand-chip">& More</div>
+    </div>
+  </div>
+
+  <!-- YOUTUBE SOCIAL PROOF -->
+  <div class="yt-section">
+    <div class="section">
+      <h2 class="section-title">See Our Work</h2>
+      <p class="section-subtitle">We document every repair on YouTube so you can see exactly how we work.</p>
+      <div class="yt-stats">
+        <div class="yt-stat">
+          <div class="yt-stat-number">5,500+</div>
+          <div class="yt-stat-label">Repair Videos</div>
+        </div>
+        <div class="yt-stat">
+          <div class="yt-stat-number">Every</div>
+          <div class="yt-stat-label">Brand Covered</div>
+        </div>
+      </div>
+      <a href="https://www.youtube.com/@kanencoffee?utm_source=meta&utm_medium=paid&utm_campaign=cold_traffic&utm_content=youtube_section"
+         target="_blank" rel="noopener noreferrer"
+         class="yt-link"
+         onclick="track('cta_click', {source: 'youtube_section', type: 'watch_repairs'})">
+        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg>
+        Watch Our Repairs
+      </a>
+
+      <div class="quote-block">
+        <p>"I watched their YouTube video of my exact machine being repaired before I even called. That's when I knew these guys were the real deal."</p>
+        <cite>-- Bay Area espresso machine owner</cite>
+      </div>
+    </div>
+  </div>
+
+  <!-- LOCATION -->
+  <div class="section">
+    <h2 class="section-title">Visit Our Shop</h2>
+    <p class="section-subtitle">Walk-ins welcome. Drop off your machine or browse refurbished models.</p>
+    <div class="location-card">
+      <h3>Kanen Coffee, LLC.</h3>
+      <p class="location-detail">2129 San Pablo Ave, Berkeley, CA 94702</p>
+      <p class="location-detail">Mon - Fri, 12:00 PM - 5:00 PM</p>
+      <p class="location-detail"><a href="tel:+15108594425" onclick="track('cta_click', {source: 'location', type: 'phone'})">(510) 859-4425</a></p>
+      <a href="https://maps.google.com/?q=2129+San+Pablo+Ave+Berkeley+CA+94702"
+         target="_blank" rel="noopener noreferrer"
+         class="location-map-link"
+         onclick="track('cta_click', {source: 'location', type: 'directions'})">
+        Get Directions &#8594;
+      </a>
+    </div>
+  </div>
+
+  <!-- BOTTOM CTA -->
+  <section class="bottom-cta">
+    <h2>Ready to Get Your Machine Fixed?</h2>
+    <p>Whether you need a repair or a replacement, we've got you covered.</p>
+    <div class="hero-cta">
+      <a href="https://www.kanencoffee.com/refurbished-espresso-machines?utm_source=meta&utm_medium=paid&utm_campaign=cold_traffic&utm_content=bottom_browse"
+         class="btn btn-primary"
+         onclick="track('cta_click', {source: 'bottom', type: 'browse_machines'})">
+        Browse Machines
+      </a>
+      <a href="https://www.kanencoffee.com/bookappointment?utm_source=meta&utm_medium=paid&utm_campaign=cold_traffic&utm_content=bottom_quote"
+         class="btn btn-secondary"
+         onclick="track('cta_click', {source: 'bottom', type: 'free_quote'})">
+        Get a Free Quote
+      </a>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    <p>
+      <a href="https://www.kanencoffee.com">kanencoffee.com</a> &middot;
+      <a href="https://help.kanencoffee.com/">Troubleshooting Guide</a> &middot;
+      <a href="https://www.youtube.com/@kanencoffee">YouTube</a>
+    </p>
+    <p style="margin-top: 0.5rem;">&copy; 2026 Kanen Coffee, LLC. &middot; Berkeley, CA</p>
+  </footer>
+
+  <!-- STICKY MOBILE CTA -->
+  <div class="sticky-cta">
+    <a href="tel:+15108594425"
+       class="btn btn-outline"
+       onclick="track('cta_click', {source: 'sticky_mobile', type: 'phone'})">
+      Call Us
+    </a>
+    <a href="https://www.kanencoffee.com/bookappointment?utm_source=meta&utm_medium=paid&utm_campaign=cold_traffic&utm_content=sticky_mobile"
+       class="btn btn-primary"
+       onclick="track('cta_click', {source: 'sticky_mobile', type: 'free_quote'})">
+      Get a Free Quote
+    </a>
+  </div>
+
+</body>
+</html>
