@@ -55,12 +55,36 @@ export default function App() {
     return () => clearTimeout(timer);
   }, []);
 
-  // Debounced search tracking
-  const handleSearchTracked = useCallback((query) => {
-    if (query.trim().length >= 3) {
-      trackEvent('search', { search_term: query.trim() });
-    }
+  // Log search to Vercel KV (fire-and-forget)
+  const logSearch = useCallback((query, resultCount, filters) => {
+    fetch('/api/search-log', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ query, resultCount, filters }),
+    }).catch(() => {}); // silent fail — analytics should never break UX
   }, []);
+
+  // Debounced search tracking — fires GA4 + Vercel KV log
+  const searchLogRef = useRef(null);
+  const handleSearchTracked = useCallback((query) => {
+    if (query.trim().length < 3) return;
+    trackEvent('search', { search_term: query.trim() });
+
+    // Delay KV log slightly so filtered results have settled
+    clearTimeout(searchLogRef.current);
+    searchLogRef.current = setTimeout(() => {
+      const q = query.trim().toLowerCase();
+      const count = ENRICHED_ISSUES.filter((issue) =>
+        issue.title.toLowerCase().includes(q) ||
+        issue.symptoms.some((s) => s.toLowerCase().includes(q)) ||
+        issue.summary.toLowerCase().includes(q)
+      ).length;
+      logSearch(query.trim(), count, {
+        tiers: selectedTiers.length ? selectedTiers : undefined,
+        categories: selectedCategories.length ? selectedCategories : undefined,
+      });
+    }, 300);
+  }, [logSearch, selectedTiers, selectedCategories]);
 
   function handleToggle(issueId) {
     setExpandedId((prev) => {
@@ -147,11 +171,16 @@ export default function App() {
   useEffect(() => {
     const wasNonZero = prevFilteredLengthRef.current !== 0;
     if (filtered.length === 0 && hasActiveFilters && wasNonZero) {
+      const term = searchQuery.trim() || null;
       trackEvent('no_results', {
-        search_term: searchQuery.trim() || null,
+        search_term: term,
         tier_filters: selectedTiers.join(',') || null,
         category_filters: selectedCategories.join(',') || null,
       });
+      // Also send a specific GA4 event for easier reporting
+      if (term) {
+        trackEvent('search_no_results', { search_term: term });
+      }
     }
     prevFilteredLengthRef.current = filtered.length;
   }, [filtered.length, hasActiveFilters, searchQuery, selectedTiers, selectedCategories]);
