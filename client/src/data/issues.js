@@ -139,6 +139,42 @@ export const ISSUES = [
     technicalDetail: `Never use distilled or RO water without a small addition of minerals — pure water is corrosive to boiler internals and also prevents the water level probe from sensing correctly (the probe requires mineral conductivity). A TDS of 75–150 ppm is the sweet spot for espresso: low enough to prevent heavy scale, high enough for machine safety and flavor. La Marzocco recommends inline Everpure or BWT filters on all commercial installations.`,
     diy: 'diy',
   },
+  {
+    id: 'boiler-replacement',
+    title: 'Boiler replacement — new boiler installation',
+    category: 'boiler',
+    tiers: ['prosumer', 'mid', 'highend'],
+    difficulty: 'advanced',
+    symptoms: [
+      'Boiler visibly corroded or pitted on exterior',
+      'Boiler leaking from the body itself (not from fittings or connections)',
+      'Heating element seat damaged — element won\'t seal properly',
+      'Repeated leaks after re-gasketing indicate boiler surface is too degraded to seal',
+    ],
+    summary: 'The boiler has deteriorated beyond repair — corrosion, pitting, or structural damage means the boiler body itself must be replaced rather than just its fittings or gaskets.',
+    cause: 'Long-term corrosion from hard water, aggressive descaling acids used too frequently or at too high a concentration, electrolytic corrosion from dissimilar metals in the plumbing, or physical damage from a drop or impact. Brass boilers are more corrosion-resistant than aluminum but both eventually degrade without proper water treatment.',
+    solution: `1. Assess the boiler condition: remove the boiler housing and inspect for pitting, green/white corrosion deposits, cracks, or weeping from the boiler walls (not just fittings).\n2. Determine repair vs. replace: if corrosion is limited to the element seat area, re-tapping the threads may save the boiler. If pitting is widespread or the boiler wall is thinned, replacement is the only option.\n3. Source the correct replacement boiler: match the boiler type (copper, brass, stainless, aluminum), dimensions, port layout, and heating element thread size exactly. OEM parts are preferred.\n4. Remove the old boiler: drain completely, disconnect all fittings (element, probe, safety valve, inlet/outlet), and remove mounting hardware.\n5. Install the new boiler with fresh gaskets on every connection point. Use Teflon tape or thread sealant rated for steam temperatures on all threaded connections.\n6. Pressure test before powering on: fill the boiler, pressurize to 1.5x operating pressure with water only, and inspect every fitting for leaks.\n7. Power on and verify temperature reaches and holds at the target setting.`,
+    technicalDetail: `Boiler materials by manufacturer: La Marzocco uses stainless steel boilers on most commercial models. Rancilio Silvia uses brass. Many DeLonghi and Gaggia home machines use aluminum thermoblocks or boilers. Copper boilers are found in some E61 machines and vintage Italian machines. When replacing, never mix metals at connection points without proper dielectric unions — copper-to-stainless connections without isolation cause galvanic corrosion. Heating element thread standards: most Italian machines use a standard M12x1 or 1-1/4" BSP thread. Verify the wattage rating matches the original — an undersized element won't reach temperature; an oversized element can overshoot and trip the safety thermostat.`,
+    diy: 'tech',
+  },
+  {
+    id: 'overheating',
+    title: 'Machine overheating — temperature too high or thermal cutoff tripping',
+    category: 'electronics',
+    tiers: ['prosumer', 'mid', 'highend', 'superauto'],
+    difficulty: 'intermediate',
+    symptoms: [
+      'Coffee tastes burnt or ashy despite correct grind and dose',
+      'Steam venting from the group head during idle',
+      'Thermal cutoff or safety fuse tripping — machine shuts off unexpectedly',
+      'Machine cycles off from overheating and won\'t restart until cooled',
+    ],
+    summary: 'The machine is running hotter than its design temperature, causing burnt-tasting coffee, safety shutdowns, or steam where there shouldn\'t be any. This is usually an electronics control issue, not a boiler defect.',
+    cause: 'A stuck-on SSR (solid state relay) is the most common cause — when an SSR fails, it fails in the "on" position, delivering continuous power to the heating element with no temperature regulation. A failed pressurestat or thermostat that doesn\'t open at the set temperature has the same effect. A drifted PID sensor can also cause the controller to overshoot.',
+    solution: `1. Check the pressurestat or thermostat setting: verify it hasn\'t been accidentally adjusted. On machines with an adjustable pressurestat, compare the gauge reading at cutoff against the spec.\n2. Test the SSR: with the machine at temperature and the heating element supposed to be off, measure voltage across the SSR output terminals. If voltage is present when the controller is calling for no heat, the SSR has failed closed — replace it immediately.\n3. Check the thermal fuse or cutoff: if it has tripped, it indicates the boiler exceeded a safe threshold. Test with a multimeter — an open circuit means the fuse is blown and must be replaced (never bypass it).\n4. Verify actual temperature with an independent thermometer or thermocouple at the group head. Compare against the PID or pressurestat reading.\n5. Replace the faulty component: SSR, pressurestat, thermostat, or PID probe depending on which is causing the overshoot.`,
+    technicalDetail: `SSR failure mode: solid state relays use a triac or SCR internally. When the semiconductor junction breaks down, it typically fails short-circuit (conducting), which means the heating element receives continuous power. This is the single most dangerous common failure in espresso machines — it can cause boiler pressure to exceed the safety valve threshold if the pressurestat also fails to open. Always test SSRs periodically on PID-controlled machines. On machines with mechanical pressurestats (Sirai, Mater, XP110A), the contact points can weld together under repeated arcing, creating the same stuck-on failure. The thermal cutoff (TCO) is a non-resettable fuse rated to a specific temperature (typically 165-190C) — once tripped, it must be replaced with the exact same rating. Never substitute a higher-rated TCO.`,
+    diy: 'tech',
+  },
 
   // ─────────── GROUP HEAD ───────────
   {
@@ -191,6 +227,24 @@ export const ISSUES = [
     solution: `1. Backflush the affected group aggressively with group head cleaner.\n2. Listen for the solenoid click when activating that group — no click suggests coil failure.\n3. Remove and inspect the group inlet screen for scale obstruction.\n4. Soak group head components in a descaling solution for 30 minutes.\n5. Test the solenoid coil with a multimeter — measure resistance (should match spec; open circuit = failed coil).`,
     technicalDetail: `On the E61 group head, the cam-operated valve can stick if not lubricated periodically with food-grade silicone grease. The cam follower and lever assembly should be inspected annually. On La Marzocco commercial machines (Linea PB, GB5), the group solenoid is field-replaceable and individual coils are available as spare parts. Nuova Simonelli Aurelia Wave and similar "Gravimetric" models have additional flow sensor hardware in the group — these can clog independently of the solenoid.`,
     diy: 'tech',
+  },
+  {
+    id: 'clog-blockage',
+    title: 'Blocked group head, steam tip, or brew circuit',
+    category: 'group',
+    tiers: ['prosumer', 'mid', 'highend', 'superauto'],
+    difficulty: 'beginner',
+    symptoms: [
+      'Low flow or no water from the group head',
+      'Steam tip producing weak or uneven steam',
+      'Brewing is unusually slow despite a coarser grind',
+      'Water drips instead of flowing during a flush',
+    ],
+    summary: 'A blockage somewhere in the brew or steam circuit is restricting water flow. The most common locations are the group head shower screen, the steam tip holes, and the brew path tubing.',
+    cause: 'Coffee oils and fine grounds clog the shower screen and dispersion plate over time. Steam tip holes block with dried milk protein if not purged after every use. Scale deposits can narrow or fully block internal tubing in the brew circuit. Backflush detergent residue can also harden inside passages if not rinsed thoroughly.',
+    solution: `1. Identify the blockage location: group head (slow or no brew flow), steam tip (weak or absent steam), or brew path (slow flow from all groups).\n2. Group head blockage: remove the shower screen and soak in Cafiza or Puly Caff for 20 minutes. Use a stiff nylon brush to clean the dispersion plate and group cavity. Backflush with detergent using a blind basket.\n3. Steam tip blockage: remove the steam tip and clear each hole with the cleaning pin that came with your machine (or a thin sewing needle). Soak in hot water with milk cleaner for 15 minutes.\n4. Brew circuit blockage: run a full descaling cycle to dissolve scale in internal tubing. For severe blockages, disconnect tubing and flush with descaler solution using a syringe.\n5. After clearing, verify flow is restored by running water through the affected circuit and comparing to the expected output.`,
+    technicalDetail: `On E61 group heads, the dispersion plate (also called the "mushroom" or "diffuser") sits above the shower screen and has a narrow central bore. This bore is the most common single point of blockage — a pin or thin wire can clear it without removing the dispersion plate. On La Marzocco saturated group heads, the group screen is retained by a single central screw — overtightening this screw can deform the screen and restrict flow even when clean. On commercial machines pulling 100+ shots per day, daily backflushing is mandatory. Weekly deep-cleaning with the screens removed is recommended. For steam tips, 4-hole tips clog faster than 1-hole tips because each hole is smaller; many baristas keep a spare steam tip on hand.`,
+    diy: 'diy',
   },
 
   // ─────────── STEAM ───────────
@@ -300,6 +354,24 @@ export const ISSUES = [
     technicalDetail: `On La Marzocco commercial machines (Linea PB, GB5 S), the 3-way solenoid coil is field-replaceable as a plug-in component — you don't need to drain the boiler or re-plumb. Coil resistance spec varies by manufacturer (typically 12–24Ω at room temperature). The nucleus is a small stainless or brass plunger inside the valve body. After cleaning, verify it moves freely by blowing through the valve ports. On Rancilio and Nuova Simonelli machines, the solenoid valve assembly is typically replaced as a complete unit rather than serviced at the nucleus level.`,
     diy: 'intermediate',
   },
+  {
+    id: 'valve-stuck',
+    title: 'Stuck or seized valve — steam, 3-way, or ceramic',
+    category: 'valves',
+    tiers: ['prosumer', 'mid', 'highend'],
+    difficulty: 'intermediate',
+    symptoms: [
+      'Valve handle won\'t turn or requires extreme force',
+      'Steam valve seized in closed or open position',
+      '3-way valve not opening or closing properly',
+      'Ceramic valve stuck — no flow change when adjusted',
+    ],
+    summary: 'A valve has seized from scale buildup, corrosion, or lack of lubrication, preventing normal control of steam, brew water, or pressure release.',
+    cause: 'Scale deposits bind the valve stem to the body over time. Corrosion on brass valve threads causes seizing. Ceramic valve discs can lock together from mineral crystallization between the surfaces. Infrequent use accelerates seizing — machines that sit idle for months are especially prone.',
+    solution: `1. Identify the valve type: steam valve (rotary knob on the front panel), 3-way solenoid (electrically operated, covered in the solenoid-failure card), or ceramic disc valve (found in some commercial group heads and water inlet valves).\n2. For a stuck steam valve: apply a small amount of food-safe penetrating oil (not WD-40) to the valve stem where it enters the body. Let it soak for 10–15 minutes.\n3. Use proper technique: grip the valve body with one wrench and the handle/stem with another. Apply slow, steady force — never use pliers directly on the valve body or you\'ll crush it.\n4. If the valve frees up: disassemble, clean all scale from threads and sealing surfaces, replace any damaged O-rings or Teflon packing, apply food-safe silicone grease, and reassemble.\n5. If the valve won\'t free or the stem is visibly corroded/stripped: replace the full valve assembly. Match the thread size and connection type exactly.`,
+    technicalDetail: `On E61 group head machines, the steam valve uses a Teflon packing gland around the stem. When this packing dries out, it creates friction that feels like seizing — replacing the packing (a small ring of Teflon rope or a pre-cut gasket) often solves the problem without replacing the valve. Ceramic disc valves (used in some La Marzocco and Synesso machines) fail differently: the ceramic faces can chip or crack, allowing micro-particles to wedge between the discs. Ceramic valves cannot be repaired — they must be replaced as a unit. On commercial machines with multiple steam valves, preventive maintenance means cycling each valve fully open and closed at least once per day to prevent scale from setting.`,
+    diy: 'intermediate',
+  },
 
   // ─────────── WATER SYSTEM ───────────
   {
@@ -355,6 +427,23 @@ export const ISSUES = [
     solution: `1. Check upstream causes first: fuses (check all fuses — a blown fuse is cheap and often mistaken for board failure), power cable, thermal fuse.\n2. Inspect the board visually for burned components, corrosion staining, or swollen capacitors.\n3. Measure voltage input/output at the board with a multimeter.\n4. If the board is confirmed failed: replacement is usually more practical than component-level repair.\n5. Source OEM replacement boards or quality aftermarket alternatives through a certified service dealer.`,
     technicalDetail: `Community electronics projects in the La Marzocco space have produced custom control boards as alternatives to stock electronics:\n- **APEC SoM (System on Module)**: an open-source autonomous profiling module developed for the GS3 AV by community member Magnus (EAF); adds closed-loop pressure and flow profiling without replacing the entire board\n- **LMLM custom gear pump controller**: a bespoke PCB controlling a gear pump for profiling on the Linea Mini; documented on Home-Barista.com\n- **AC board mod** for Micra / Linea Mini R / Mini Classic: a custom board that adds shot timer functionality and is compatible across several Linea Mini variants; the Linea Mini R uses the Micra PCB internally with an added shot timer connector\n\nFor super-automatic machines (Franke, Jura, WMF), control board replacement typically costs $300–$800 in parts and $200–$400 in labor.`,
     diy: 'tech',
+  },
+  {
+    id: 'power-failure',
+    title: 'Machine completely dead — no power at all',
+    category: 'electronics',
+    tiers: ['prosumer', 'mid', 'highend', 'superauto', 'home-superauto'],
+    difficulty: 'beginner',
+    symptoms: [
+      'No lights, no display, no response when the power switch is turned on',
+      'Machine is completely dead — no signs of life whatsoever',
+      'Machine was working yesterday but now does nothing',
+    ],
+    summary: 'The machine shows no sign of power at all. This is usually caused by a blown fuse, a failed power switch, a damaged power cord, or a tripped thermal cutoff — not a dead control board.',
+    cause: 'A blown internal fuse is the most common cause (often from a power surge or a shorted component). A failed or corroded power switch, a damaged power cord with a broken conductor, or a tripped thermal cutoff that hasn\'t reset can all cause a completely dead machine. Control board failure is possible but less likely when there are zero signs of power.',
+    solution: `1. Check the outlet: plug in a different appliance to verify the outlet works. Try a different outlet with the machine.\n2. Inspect the power cord for visible damage — cuts, kinks, burn marks, or a loose plug connection. If the machine uses a detachable IEC cord, try a known-good replacement cord.\n3. Check the fuse: most espresso machines have an internal fuse on the power inlet or the control board. Open the machine and locate the fuse (usually a glass or ceramic cylinder near the power inlet). Test with a multimeter for continuity — no continuity means it\'s blown. Replace with the exact same amperage and voltage rating.\n4. Test the power switch: with the machine unplugged, use a multimeter in continuity mode across the switch terminals. The switch should show continuity in the ON position and open circuit in OFF. A corroded or failed switch will show open circuit in both positions.\n5. Inspect internal wiring for burns, breaks, or disconnected spade connectors. Thermal damage near the boiler is common.\n6. Check the thermal cutoff or safety thermostat — if it has tripped, the machine won\'t power on until it\'s replaced (thermal cutoffs are non-resettable; thermal resets are resettable).\n7. If all of the above check out, the control board may have a failed power supply section — consult a technician.`,
+    technicalDetail: `Fuse ratings vary by machine and voltage: 120V machines typically use 15A or 20A fuses; 220-240V machines use 10A or 13A fuses. Never substitute a higher-rated fuse — the fuse protects the wiring and components from fire. On machines with a rocker switch and neon indicator lamp, the lamp can burn out independently while the switch still works — a dead indicator light doesn\'t always mean no power. On dual-voltage machines (some Rocket, ECM, Profitec models), verify the voltage selector is set correctly for your region — incorrect voltage selection can blow the fuse immediately or damage the heating element. For machines that died during a power surge or storm, check the MOV (metal oxide varistor) on the power inlet board — if it has exploded (cracked, blackened), replace it along with the fuse.`,
+    diy: 'intermediate',
   },
   {
     id: 'electronics-pressurestat',
@@ -554,6 +643,24 @@ export const ISSUES = [
     technicalDetail: `Super-automatic machines (Jura, DeLonghi, Saeco) have integrated grinders that are significantly harder to clear. On these machines, the manufacturer may provide a "cleaning tablet" mode that partially clears soft clogs. For hard jams on super-automatics, partial disassembly is typically required. On Mazzer commercial grinders, the motor start capacitor is a well-known failure mode on older units — a capacitor that fails causes the motor to hum without starting, mimicking a jam. Test by gently helping the burrs start rotating (with the machine unplugged!) — if the motor continues on its own after a hand-start, the capacitor is the culprit.`,
     diy: 'diy',
   },
+  {
+    id: 'burr-replacement',
+    title: 'Grinder burr replacement — worn or damaged burrs',
+    category: 'grinder',
+    tiers: ['prosumer', 'mid', 'highend', 'superauto', 'home-superauto'],
+    difficulty: 'intermediate',
+    symptoms: [
+      'Grind getting progressively coarser over time despite not changing the setting',
+      'Uneven particle size — mix of boulders and fines visible on a white surface',
+      'Grinder running noticeably longer to produce the same dose',
+      'Coffee tastes stale, flat, or muddled despite using fresh beans',
+    ],
+    summary: 'The grinder burrs have worn past their useful life and are no longer cutting beans cleanly. Worn burrs tear and crush beans instead of cutting them, producing inconsistent particles and degraded flavor.',
+    cause: 'All burrs wear over time. Steel flat burrs typically last 200–500 kg of coffee. Steel conical burrs last 500–1,000 kg. Ceramic burrs last 750–1,500 kg but are more brittle and can chip from foreign objects. Oily, dark-roasted beans accelerate wear. Running the grinder empty (metal-on-metal contact) destroys burrs quickly.',
+    solution: `1. Check grind output quality: dose into a white cup or scatter mat and look for uniformity. Worn burrs produce an obviously uneven spread with both large chunks and excessive dust.\n2. Remove the upper burr carrier: on most grinders, this is 2–3 screws or a bayonet twist. On super-automatics, consult the service manual for your model — the burr carrier may require partial machine disassembly.\n3. Inspect the burr edges: sharp burrs have crisp, well-defined cutting edges. Worn burrs have rounded, smooth edges that reflect light — if you can see a shiny edge, the burr is dull.\n4. Replace the burr set: always replace both burrs as a matched pair. Match the exact burr diameter (common sizes: 50mm, 58mm, 64mm, 83mm) and mounting pattern. Use OEM or quality aftermarket burrs.\n5. Reassemble and calibrate: set the grind zero point by carefully closing the burrs until they just touch (light chirp), then back off to your target espresso setting.\n6. Season new burrs: run 250–500g of inexpensive beans through before using for quality coffee. New burrs shed microscopic metal particles and produce inconsistent grinds until the cutting surfaces break in.`,
+    technicalDetail: `Burr types and expected lifespan: DeLonghi super-auto steel burrs last approximately 10,000–15,000 cups. Jura ceramic burrs are rated for 20,000+ cups. Mazzer commercial flat burrs (64mm) are rated for 250–350 kg; the 83mm Robur burrs last 400–600 kg due to slower RPM and larger cutting surface. Aftermarket burr options: SSP (South Korea) manufactures high-uniformity replacement burrs for Mazzer, Eureka, and EK43 — their "High Uniformity" and "Multi-Purpose" geometries are popular upgrades. Italmill (Italy) produces OEM burrs for many manufacturers. When replacing burrs on a super-automatic, take photos of the burr orientation before removing — the upper and lower burrs are not identical and must be installed in the correct direction. On DeLonghi ECAM grinders, the burr carrier is keyed and can only install one way, but the spring tension must be re-indexed after reassembly.`,
+    diy: 'intermediate',
+  },
 
   // ─────────── WATER SYSTEM (additional) ───────────
   {
@@ -613,6 +720,24 @@ export const ISSUES = [
     solution: `1. Open the side door and pull out the brew unit using the release handle (DeLonghi: left side; Saeco/Philips: right side). Jura E/S series brew units are not user-removable — skip to step 5.\n2. Rinse the brew unit under warm (not hot) running water. Never put it in the dishwasher.\n3. Let it air dry for 30 minutes.\n4. Apply 2–3 drops of food-grade silicone grease (not petroleum-based) to the sliding rails on both sides. Do not use vegetable oil or cooking spray.\n5. Run a cleaning tablet cycle: drop a tablet into the cleaning slot and select "Clean" or "Rinse" from the menu.\n6. If the brew unit is completely stuck and won't come out: power the machine off, wait 2 minutes, then power on again — some machines unlock the brew unit on startup. Do not force it.`,
     technicalDetail: `On DeLonghi ECAM machines (Magnifica, PrimaDonna, Eletta), the brew unit uses a plastic upper and lower piston with a center drive shaft. The most common failure modes are: (1) cracking of the plastic drive arm, visible as a white stress fracture; (2) seizure of the central shaft due to coffee oil hardening. Replacement brew units for ECAM series are available from ~$40–$70. On Jura machines, the brew unit is NOT user-removable on Impressa/ENA series — if a brew unit error appears, it indicates a sensor fault or mechanical failure requiring service. On E/S series Jura, the brew unit is removable from the front panel after pressing the maintenance button. On Saeco/Philips LatteGo machines, ensure the milk carafe is disconnected before removing the brew unit — the shared spout connection point is a common source of misdiagnosis.`,
     diy: 'diy',
+  },
+  {
+    id: 'brew-unit-stuck',
+    title: 'Brew unit stuck or not resetting — super-automatic machines',
+    category: 'group',
+    tiers: ['superauto', 'home-superauto'],
+    difficulty: 'intermediate',
+    symptoms: [
+      'Brew unit won\'t slide out of the machine',
+      'Machine displaying brew unit error or service message',
+      'Machine grinds beans but does not brew — cycle stops mid-way',
+      'Brew unit stuck in the mid-cycle position and won\'t reset',
+    ],
+    summary: 'The brew unit is mechanically stuck or has failed to return to its home position after a brew cycle. This prevents the machine from completing or starting a new cycle.',
+    cause: 'Coffee grounds buildup inside the brew unit housing creates friction that prevents the unit from sliding. Dried coffee oils on the guide rails cause the unit to seize. A failed drive motor or stripped gear in the brew unit drive mechanism can leave the unit stuck mid-cycle. Power interruption during a brew cycle can also leave the unit in an intermediate position.',
+    solution: `1. Turn off and unplug the machine. Wait at least 30 seconds.\n2. Try the manual release lever: most DeLonghi and Saeco/Philips machines have a release mechanism accessible through the service door. On DeLonghi ECAM models, press the PUSH button on the brew unit while pulling the handle. On Saeco, press the release tab and pull.\n3. If the unit comes out: remove it and rinse thoroughly under warm running water. Use a soft brush to remove compacted grounds from the piston area and guide rails.\n4. Lubricate the guide rails with food-safe silicone grease (Dow Corning 111 or equivalent). Apply a thin film to both side rails and the central piston rod.\n5. Clean the brew unit housing inside the machine: use a long brush or vacuum to remove loose grounds from the cavity where the unit sits.\n6. Reinstall the brew unit and power on the machine. The machine should run an initialization cycle — listen for the motor engaging and the unit cycling to its home position.\n7. If the unit won\'t release at all: the drive gear may be stripped or the motor may have failed — this requires service-level disassembly.`,
+    technicalDetail: `On DeLonghi ECAM machines, the brew unit drive mechanism uses a worm gear connected to a small DC motor. If the worm gear teeth strip (visible as white plastic shavings in the housing), the motor spins but the unit doesn't move. Replacement drive gears are available but require significant disassembly. On Jura machines with non-removable brew units (Impressa, ENA, A-line), the brew unit position is tracked by a microswitch — if the switch fails or the unit is physically stuck, the machine enters a permanent error state. A Jura service tool (available through authorized dealers) can force a reset of the brew unit position counter. On Saeco/Philips machines, the brew unit has a mechanical counter that tracks cycles — at a set interval (typically every 500 cycles), the machine prompts for lubrication. Ignoring this prompt accelerates wear on the drive mechanism.`,
+    diy: 'intermediate',
   },
   {
     id: 'superauto-weak-coffee',
@@ -1144,5 +1269,101 @@ Machine runs for a full brew and steam cycle before being packaged. Any issue fo
 
 **What "diagnosed and fixed" means in our video titles**: Every video we publish shows a machine that was fully repaired and passed our final run test. The title format "Diagnosed & Fixed" means: we found the root cause, corrected it, and verified the machine works correctly. We don't publish videos on machines with unknown outcomes.`,
     diy: 'beginner',
+  },
+
+  // ─────────── WARRANTY & SERVICE INFO ───────────
+  {
+    id: 'warranty-repair',
+    title: 'Warranty service — manufacturer claims & Kanen Coffee 90-day guarantee',
+    category: 'maintenance',
+    tiers: ['home', 'home-superauto', 'mid', 'prosumer', 'commercial'],
+    difficulty: 'beginner',
+    symptoms: [
+      'Machine is still under manufacturer warranty and needs repair',
+      'Looking for warranty service options for your espresso machine',
+      'Want to understand what Kanen Coffee\'s 90-day repair guarantee covers',
+      'Unsure whether to contact the manufacturer or a local repair shop',
+    ],
+    summary: 'If your machine is under manufacturer warranty, you may be entitled to free or discounted repair. Kanen Coffee handles warranty service in-house when possible and supports you through the manufacturer process when required. Every Kanen Coffee repair — warranty or not — comes with a 90-day guarantee on the work performed.',
+    cause: 'Espresso machines fail for many reasons, and warranty coverage depends on the manufacturer, the age of the machine, and the nature of the failure. Manufacturer warranties typically cover defects in materials and workmanship but exclude damage from lack of maintenance, scale buildup, unauthorized modifications, or normal wear items (group gaskets, seals, filters).',
+    solution: `**Step 1 — Check warranty status with the manufacturer**
+Contact the manufacturer or check your purchase documentation to verify warranty coverage. Most home machines carry a 1–2 year warranty. Commercial machines may have different terms. You will typically need: proof of purchase (receipt), the machine serial number (usually on a label on the bottom or back), and a description of the problem.
+
+**Step 2 — Contact Kanen Coffee for warranty service**
+Whether your machine is in warranty or not, we can help. Bring or ship the machine to us and we will diagnose the issue and advise you on the best path forward — manufacturer warranty claim, in-house repair, or a combination.
+
+**Step 3 — We diagnose and document the issue**
+We perform a full diagnostic to identify the root cause. This documentation serves double duty: it guides the repair AND supports a warranty claim if one is needed. We photograph and describe the failure for the manufacturer\'s review.
+
+**Step 4 — Repair handled in-house or manufacturer shipping supported**
+For many warranty issues, we can perform the repair ourselves and the manufacturer reimburses the parts. For claims that require returning the machine to the manufacturer, we help you package and ship it, and we track the claim on your behalf.
+
+**Step 5 — Machine tested and returned with 90-day Kanen Coffee guarantee**
+Every repair we perform — regardless of warranty status — includes a full test cycle and comes with our 90-day guarantee on the work performed. If the same issue recurs within 90 days, we fix it at no additional charge.`,
+    technicalDetail: `**Manufacturer warranty terms (general guidelines — always verify with the manufacturer):**
+- **Breville/Sage**: 1-year limited warranty (2 years in EU). Covers manufacturing defects. Scale damage is excluded.
+- **DeLonghi**: 1-year limited warranty. Super-automatics often require authorized service center repair.
+- **Jura**: 2-year limited warranty. Jura strongly prefers repairs through authorized Jura service partners.
+- **La Marzocco**: 2-year warranty on home machines (Linea Mini, Micra). Commercial machines have separate commercial warranty terms.
+- **Rancilio**: 2-year warranty (Silvia and Silvia Pro).
+- **Gaggia**: 1-year warranty. Gaggia Classic is widely serviced by independent shops.
+- **Rocket Espresso**: 2-year warranty. Requires authorized service center for warranty claims.
+
+**What warranty does NOT cover (nearly universal):**
+Scale damage from lack of descaling, worn group gaskets and seals, cosmetic damage, damage from unauthorized modifications, damage from using non-approved cleaning products, and normal wear items.
+
+**Kanen Coffee 90-day guarantee details:**
+Our guarantee covers the specific repair performed — the parts we replaced and the labor to install them. It does not cover new, unrelated failures on different components. If we replace a pump and it fails again within 90 days, that is covered. If we replace a pump and the heating element fails 60 days later, that is a separate issue and a separate repair.`,
+    diy: 'beginner',
+  },
+  {
+    id: 'cleaning-maintenance',
+    title: 'Cleaning and maintenance — keeping your machine running',
+    category: 'maintenance',
+    tiers: ['home', 'home-superauto', 'mid', 'prosumer', 'commercial'],
+    difficulty: 'beginner',
+    symptoms: [
+      'Slow flow or reduced brew pressure that develops gradually',
+      'Coffee tastes stale, bitter, or off despite fresh beans',
+      'Visible buildup on group head, shower screen, or steam wand',
+      'Machine overdue for regular service — unsure what to do',
+    ],
+    summary: 'Regular cleaning and preventive maintenance is the single most effective way to keep an espresso machine running well and avoid expensive repairs. Most common failures we see in the shop are caused by deferred maintenance, not component defects.',
+    cause: 'Coffee oils oxidize and turn rancid inside the brew path. Scale builds on heating surfaces and restricts flow. Milk proteins dry and harden inside steam circuits. Gaskets and seals degrade from heat cycling. All of these happen gradually, which means the taste and performance degrade so slowly that many owners don\'t notice until a failure occurs.',
+    solution: `**Daily maintenance (2 minutes)**
+- Wipe the group head gasket area with a damp cloth after your last shot
+- Purge the steam wand immediately after every milk drink — a 2-second blast of steam clears the tip
+- Empty the drip tray and grounds container (super-automatics)
+
+**Weekly maintenance (10 minutes)**
+- Backflush with detergent: insert a blind basket, add 1/2 tsp of Cafiza or Puly Caff, run 5 cycles of 10 seconds on / 10 seconds off. Rinse with 5 cycles of plain water. (Only for machines with a 3-way valve — most prosumer and commercial machines)
+- Clean the steam wand tip: unscrew and soak in hot water with milk cleaner for 10 minutes
+- Wipe down the exterior and drip tray
+
+**Monthly maintenance (30 minutes)**
+- Run a full descaling cycle following your machine\'s procedure (see our descaling guide for details)
+- Remove and soak the shower screen in group head cleaner
+- On super-automatics: run the built-in cleaning cycle with a manufacturer-approved cleaning tablet
+
+**Every 6–12 months (or annually)**
+- Replace the group head gasket — even if it\'s not leaking yet, the rubber hardens and a fresh gasket improves seal and extraction consistency
+- Clean the shower screen and replace if holes are worn or enlarged
+- Lubricate the E61 cam mechanism with food-safe silicone grease (E61 group machines only)
+- Lubricate the brew unit guide rails (super-automatics)
+- Inspect steam wand O-rings and replace if cracked or stiff
+- Check all hoses for cracks, bulging, or hardening — replace any suspect hoses`,
+    technicalDetail: `**Cleaning products that work (and ones to avoid):**
+Group head cleaners: Cafiza (Urnex), Puly Caff (Puly), JoeGlo — all are espresso-specific alkaline detergents that dissolve coffee oils without damaging metal or rubber. Never use dish soap (leaves residue and can damage seals) or bleach (corrodes metal and is toxic in a food system).
+
+Descalers: Citric acid (food-grade, 15-20g per liter), Dezcal (Urnex), EcoDecalk (DeLonghi), manufacturer-specific descalers for super-automatics. Avoid white vinegar (too mild, leaves lingering taste and smell) and generic household descalers (wrong pH, may damage seals).
+
+Milk cleaners: Rinza (Urnex), Puly Milk — these are alkaline solutions that break down dried milk protein. Hot water alone does not fully dissolve milk protein once it has dried.
+
+**Maintenance schedule impact on machine life:**
+A well-maintained prosumer espresso machine (Rancilio Silvia, Gaggia Classic, Breville Dual Boiler) should last 10–15+ years. The same machine with no maintenance typically develops problems within 2–3 years. Commercial machines in cafe environments need daily backflushing and quarterly professional service — most manufacturer warranties require documented maintenance records.
+
+**Super-automatic maintenance notes:**
+DeLonghi, Jura, Saeco, and Siemens machines all have built-in maintenance reminders. Follow them. The cleaning tablet cycle is not optional — it removes coffee oil buildup from the brew unit and internal tubing that rinsing alone cannot clear. On Jura machines, the Claris/CLEARYL water filter should be replaced every 50 liters or 2 months (whichever comes first) — the machine tracks usage and prompts for replacement.`,
+    diy: 'diy',
   },
 ];
